@@ -40,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(100, 0, 195, 137),
+      backgroundColor: Color.fromARGB(99, 255, 255, 255),
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
@@ -104,10 +104,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.account_circle),
-                          prefixIconColor: Colors.black,
-                          hintText: "Full Name",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: const Icon(Icons.account_circle),
+                        prefixIconColor: Colors.black,
+                        hintText: "Full Name",
+                      ),
                     ),
                   ],
                 ),
@@ -150,10 +155,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email_outlined),
-                          prefixIconColor: Colors.black,
-                          hintText: "Email",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.email_outlined),
+                        prefixIconColor: Colors.black,
+                        hintText: "Email",
+                      ),
                     ),
                   ],
                 ),
@@ -197,12 +207,17 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock_outline_rounded),
-                          prefixIconColor: Colors.black,
-                          suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                          suffixIconColor: Colors.black,
-                          hintText: "Password",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.lock_outline_rounded),
+                        prefixIconColor: Colors.black,
+                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                        suffixIconColor: Colors.black,
+                        hintText: "Password",
+                      ),
                     ),
                   ],
                 ),
@@ -245,10 +260,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.calendar_today),
-                          prefixIconColor: Colors.black,
-                          hintText: "Birthday",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.calendar_today),
+                        prefixIconColor: Colors.black,
+                        hintText: "Birthday",
+                      ),
                       readOnly:
                           true, //set it true, so that user will not able to edit text
                       onTap: () async {
@@ -317,10 +337,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.phone_android),
-                          prefixIconColor: Colors.black,
-                          hintText: "Phone",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.phone_android),
+                        prefixIconColor: Colors.black,
+                        hintText: "Phone",
+                      ),
                     ),
                   ],
                 ),
@@ -363,10 +388,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.home),
-                          prefixIconColor: Colors.black,
-                          hintText: "Address",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.home),
+                        prefixIconColor: Colors.black,
+                        hintText: "Address",
+                      ),
                     ),
                   ],
                 ),
@@ -404,10 +434,15 @@ class _RegisterPageState extends State<RegisterPage> {
                     DropdownButtonFormField(
                       items: roles,
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.supervised_user_circle),
-                          prefixIconColor: Colors.black,
-                          hintText: "Register as a...",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.supervised_user_circle),
+                        prefixIconColor: Colors.black,
+                        hintText: "Register as a...",
+                      ),
                       onChanged: (String? newValue) {
                         setState(() {
                           if (newValue != null) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tubes/pages/FirstPage.dart';
+import 'package:tubes/pages/HomePage.dart';
 import 'package:tubes/pages/RegisterPage.dart';
 import 'package:tubes/pages/LandingPage.dart';
 
@@ -21,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
       /*
       App Bar isinya back button, title dari Login Page
       */
-      backgroundColor: Color.fromARGB(100, 0, 195, 137),
+      backgroundColor: Color.fromARGB(99, 255, 255, 255),
       appBar: AppBar(
         //Back Button
         //Leading buat nyimpen di pinggir
@@ -101,10 +101,15 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.email_outlined),
-                          prefixIconColor: Colors.black,
-                          hintText: "Email",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.email_outlined),
+                        prefixIconColor: Colors.black,
+                        hintText: "Email",
+                      ),
                     ),
                   ],
                 ),
@@ -148,12 +153,17 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.w500,
                           color: Colors.black),
                       decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.lock_outline_rounded),
-                          prefixIconColor: Colors.black,
-                          suffixIcon: Icon(Icons.remove_red_eye_outlined),
-                          suffixIconColor: Colors.black,
-                          hintText: "Password",
-                          border: InputBorder.none),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        filled: true,
+                        hintStyle: TextStyle(color: Colors.grey[800]),
+                        prefixIcon: Icon(Icons.lock_outline_rounded),
+                        prefixIconColor: Colors.black,
+                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                        suffixIconColor: Colors.black,
+                        hintText: "Password",
+                      ),
                     ),
                   ],
                 ),
@@ -182,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FirstPage(),
+                    builder: (context) => HomePage(),
                   ));
             },
             child: Container(

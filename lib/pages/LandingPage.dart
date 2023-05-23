@@ -33,7 +33,7 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(100, 0, 195, 137),
+      backgroundColor: Color.fromARGB(99, 255, 255, 255),
       body: SingleChildScrollView(
         child: getBody(),
       ),
@@ -57,7 +57,7 @@ class _LandingPageState extends State<LandingPage> {
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
           margin: EdgeInsets.only(top: 7),
           decoration: BoxDecoration(
-            color: Colors.cyan[50],
+            color: Color.fromRGBO(142, 212, 178, 1.0),
             borderRadius: BorderRadius.circular(30),
           ),
           width: double
