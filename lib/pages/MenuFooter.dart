@@ -1,8 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tubes/pages/RegisterPage.dart';
-import 'package:tubes/pages/LoginPage.dart';
+//import 'package:tubes/pages/RegisterPage.dart';
+//import 'package:tubes/pages/LoginPage.dart';
 import 'package:tubes/pages/Home.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,6 +16,10 @@ class _HomePageState extends State<HomePage> {
   int pageIndex = 2;
 
   List<Widget> pages = [
+    Home(),
+    Home(),
+    Home(),
+    Home(),
     Home(),
   ];
 
