@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tubes/pages/HomePage.dart';
+import 'package:tubes/pages/MenuFooter.dart';
 import 'package:tubes/pages/RegisterPage.dart';
 import 'package:tubes/pages/LandingPage.dart';
 
