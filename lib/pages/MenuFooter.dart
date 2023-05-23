@@ -13,9 +13,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //index 2 untuk menunjukkan home (index mulai dari 0)
   int pageIndex = 2;
 
   List<Widget> pages = [
+    //masih placeholder
     Home(),
     Home(),
     Home(),
