@@ -434,6 +434,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   //   Navigator.push(context,
                   //       MaterialPageRoute(builder: (_) => LoginPage()));
                   // },
+
+                  //Sebelum ke login harus bisa simpen ke db dulu ygy
                   child: Text(
                     'Syarat & Ketentuan.',
                     style: TextStyle(

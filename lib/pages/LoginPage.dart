@@ -18,9 +18,15 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*
+      App Bar isinya back button, title dari Login Page
+      */
       backgroundColor: Color.fromARGB(100, 0, 195, 137),
       appBar: AppBar(
+        //Back Button
+        //Leading buat nyimpen di pinggir
         leading: BackButton(
+          //on pressed biar ketika dipijit pindah ke landing page alias page awal banget, cuman harusnya data ga kesimpen
           onPressed: () {
             Navigator.pushReplacement(
                 context,
