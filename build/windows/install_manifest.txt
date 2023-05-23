@@ -1,0 +1,10 @@
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/icudtl.dat
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/flutter_windows.dll
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/AssetManifest.json
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/assets/images/google.png
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/FontManifest.json
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/kernel_blob.bin
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/NOTICES.Z
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+D:/kodingan/sem4/tubesprovis5/build/windows/runner/Debug/data/flutter_assets/shaders/ink_sparkle.frag

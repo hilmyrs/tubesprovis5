@@ -20,6 +20,15 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Color.fromARGB(100, 0, 195, 137),
       appBar: AppBar(
+        leading: BackButton(
+          onPressed: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LandingPage(),
+                ));
+          },
+        ),
         title: Center(child: Text('Login')),
         backgroundColor: Color.fromARGB(100, 0, 195, 137),
       ),

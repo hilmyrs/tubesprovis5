@@ -1,0 +1,10 @@
+^D:\KODINGAN\SEM4\TUBESPROVIS5\BUILD\WINDOWS\CMAKEFILES\9AE17E26192868BAAE631FF3C6B334C4\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

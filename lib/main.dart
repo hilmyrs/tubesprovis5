@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: new ThemeData(
+      theme: ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
-      home: FirstPage(),
+      home: const LandingPage(),
     );
   }
 }
