@@ -56,8 +56,19 @@ class _HomeState extends State<Home> {
             ),
             Stack(
               children: [
+                //Buat bagian bawah biar kotak
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+                  margin: EdgeInsets.only(top: 100),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(142, 212, 178, 1),
+                  ),
+                  width: double.infinity,
+                  height: 750,
+                ),
+                //container yg rounded rectangle
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 50),
                   margin: EdgeInsets.only(top: 50),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(142, 212, 178, 1),
@@ -69,37 +80,28 @@ class _HomeState extends State<Home> {
                   ),
                   width: double.infinity,
                   height: 800,
-                  child: Column(
-                    children: [Text('Halo')],
-                  ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 100, horizontal: 150),
-                  margin: EdgeInsets.only(top: 250),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(142, 212, 178, 1),
-                  ),
-                  width: double.infinity,
-                  height: 800,
-                  child: Column(
-                    children: [Text('Halo')],
-                  ),
-                ),
+
                 Center(
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
                     margin: EdgeInsets.only(top: 7),
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: Colors.black, // Warna border
-                        width: 1, // Ketebalan border
-                      ),
-                      // Menggunakan BoxConstraints untuk mengubah lebar
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(
+                          color:
+                              Color.fromRGBO(175, 175, 175, 1), // Warna border
+                          width: 0.5, // Ketebalan border
+                        ),
+                        boxShadow: [
+                          BoxShadow(blurRadius: 2.0, offset: Offset(0, 5))
+                        ]
+                        // Menggunakan BoxConstraints untuk mengubah lebar
+                        ),
+
                     constraints:
-                        BoxConstraints(maxWidth: 1000), // Lebar maksimum
+                        BoxConstraints(maxWidth: 800), // Lebar maksimum
                     width: 300,
                     height: 200,
 
@@ -107,6 +109,31 @@ class _HomeState extends State<Home> {
                       children: [
                         Text('Tes'),
                       ],
+                    ),
+                  ),
+                ),
+
+                Positioned(
+                  top: 300,
+                  left: 0,
+                  right: 0,
+                  child: SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => Card(
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.all(50),
+                            margin: EdgeInsets.only(top: 200, right: 50),
+                            height: 100,
+                            width: 200,
+                            color: Colors.blue,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
