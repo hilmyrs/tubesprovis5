@@ -68,7 +68,7 @@ class _HomeState extends State<Home> {
                 ),
                 //container yg rounded rectangle
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 50),
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
                   margin: EdgeInsets.only(top: 50),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(142, 212, 178, 1),
@@ -80,6 +80,80 @@ class _HomeState extends State<Home> {
                   ),
                   width: double.infinity,
                   height: 800,
+                ),
+
+                //buat list view horizontal di stack positioned
+                Positioned(
+                    top: 225,
+                    left: 50,
+                    right: 0,
+                    child: Text(
+                      "Ayo Danai Mereka",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+
+                //buat list view horizontal di stack positioned
+                Positioned(
+                  top: 255,
+                  left: 0,
+                  right: 0,
+                  child: SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => Card(
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
+                              margin: EdgeInsets.only(top: 20, right: 20),
+                              height: 80,
+                              width: 250,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                //buat list view horizontal di stack positioned
+                Positioned(
+                    top: 465,
+                    left: 50,
+                    right: 0,
+                    child: Text(
+                      "Update Terkini",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    )),
+
+                //list view horizontal bawah
+                Positioned(
+                  top: 500,
+                  left: 0,
+                  right: 0,
+                  child: SizedBox(
+                    height: 200,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 5,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => Card(
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
+                              margin: EdgeInsets.only(top: 20, right: 20),
+                              height: 80,
+                              width: 300,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
 
                 Center(
@@ -102,38 +176,161 @@ class _HomeState extends State<Home> {
 
                     constraints:
                         BoxConstraints(maxWidth: 800), // Lebar maksimum
-                    width: 300,
+                    width: 350,
                     height: 200,
 
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Text('Tes'),
-                      ],
-                    ),
-                  ),
-                ),
-                //buat list view horizontal di stack positioned
-                Positioned(
-                  top: 300,
-                  left: 0,
-                  right: 0,
-                  child: SizedBox(
-                    height: 200,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 10,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => Card(
-                        child: Center(
-                          child: Container(
-                            padding: EdgeInsets.all(50),
-                            margin: EdgeInsets.only(top: 200, right: 50),
-                            height: 100,
-                            width: 200,
-                            color: Colors.blue,
-                          ),
+                        Wrap(
+                          children: [
+                            //kontainer aset dan profit
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Total Aset : ",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Spacer(),
+                                      Icon(
+                                        Icons.notifications,
+                                        color: Colors.black,
+                                        size: 30.0,
+                                      ),
+                                    ],
+                                  ),
+
+                                  //TO DO Angka
+                                  Text(
+                                    "Rp. XX.XXX.XXX",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+
+                                  //TO DO Tambahin profit + custom color
+                                  Text(
+                                    "Total Profit : Rp. X.XXX.XXX (+10%)",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w100,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              width: 300,
+                              height: 30,
+                            ),
+                            //kontainer dompet
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  //Row untuk title icon
+                                  Row(children: [
+                                    Row(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              "Dompet Saya",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 11),
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.account_balance_wallet,
+                                                  color: Colors.black,
+                                                  size: 30.0,
+                                                ),
+                                                SizedBox(width: 5),
+                                                Text(
+                                                  "Rp. X.XXX.XXX",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w100,
+                                                      fontSize: 12),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+
+                                    Spacer(),
+
+                                    //TOP UP
+                                    //To do pindah ke laman top up
+                                    Row(
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text(
+                                              "Top Up",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 9),
+                                            ),
+                                            Icon(
+                                              Icons.add_circle_outline,
+                                              color: Colors.black,
+                                              size: 30.0,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 10),
+
+                                        //WITHDRAW
+                                        //To Do pindah ke laman withdraw
+                                        Column(
+                                          children: [
+                                            Text(
+                                              "Withdraw",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 9),
+                                            ),
+                                            SizedBox(width: 5),
+                                            //Withdraw
+                                            Icon(
+                                              Icons.add_circle_outline,
+                                              color: Colors.black,
+                                              size: 30.0,
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                    //SizedBox(width: 4),
+                                  ]),
+                                  //Row buat icon
+                                  Row(
+                                    children: [
+                                      //Wallet
+
+                                      //Spacer(),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
