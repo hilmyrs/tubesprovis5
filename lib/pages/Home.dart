@@ -107,10 +107,18 @@ class _HomeState extends State<Home> {
                         child: Row(
                           children: [
                             Container(
-                              padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
-                              margin: EdgeInsets.only(top: 20, right: 20),
-                              height: 80,
-                              width: 250,
+                              //margin: EdgeInsets.only(right: 15),
+                              width: 350,
+                              height: 205,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -144,10 +152,18 @@ class _HomeState extends State<Home> {
                         child: Row(
                           children: [
                             Container(
-                              padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
-                              margin: EdgeInsets.only(top: 20, right: 20),
-                              height: 80,
+                              //margin: EdgeInsets.only(right: 15),
                               width: 300,
+                              height: 205,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: NetworkImage(
+                                    "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),

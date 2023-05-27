@@ -65,6 +65,7 @@ class _LandingPageState extends State<LandingPage> {
 
           child: Column(
             children: [
+              SizedBox(height: 30),
               Text(
                 'Selamat Datang',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -148,7 +149,7 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               ),
               SizedBox(
-                height: 100,
+                height: 80,
               ),
               Padding(
                 padding: const EdgeInsets.all(20),
@@ -166,19 +167,8 @@ class _LandingPageState extends State<LandingPage> {
                   children: [
                     Container(
                       margin: EdgeInsets.only(right: 15),
-                      width: 350,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Column(
-                        children: [Text("Halooo")],
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 15),
-                      width: 350,
-                      height: 200,
+                      width: 250,
+                      height: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
@@ -191,8 +181,22 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                     Container(
                       margin: EdgeInsets.only(right: 15),
-                      width: 350,
-                      height: 200,
+                      width: 250,
+                      height: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                            "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 15),
+                      width: 250,
+                      height: 100,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
@@ -206,11 +210,8 @@ class _LandingPageState extends State<LandingPage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 100,
-              ),
             ],
-          ))
+          )),
     ]));
   }
 }
