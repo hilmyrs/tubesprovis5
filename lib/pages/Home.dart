@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    SizedBox(width: 170),
+                    SizedBox(width: 60),
                     CircleAvatar(
                       radius: 30,
                       backgroundImage: NetworkImage(
@@ -60,15 +60,27 @@ class _HomeState extends State<Home> {
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
                   margin: EdgeInsets.only(top: 50),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color.fromRGBO(142, 212, 178, 1),
                     borderRadius: BorderRadius.circular(30),
                     border: Border.all(
-                      color: Colors.black, // Warna border
+                      color: Color.fromRGBO(142, 220, 179, 1), // Warna border
                       width: 1, // Ketebalan border
                     ),
                   ),
                   width: double.infinity,
-                  height: size.height * 0.5,
+                  height: 800,
+                  child: Column(
+                    children: [Text('Halo')],
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 100, horizontal: 150),
+                  margin: EdgeInsets.only(top: 250),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(142, 212, 178, 1),
+                  ),
+                  width: double.infinity,
+                  height: 800,
                   child: Column(
                     children: [Text('Halo')],
                   ),
@@ -87,8 +99,8 @@ class _HomeState extends State<Home> {
                       // Menggunakan BoxConstraints untuk mengubah lebar
                     ),
                     constraints:
-                        BoxConstraints(maxWidth: 450), // Lebar maksimum
-                    width: double.infinity,
+                        BoxConstraints(maxWidth: 1000), // Lebar maksimum
+                    width: 300,
                     height: 200,
 
                     child: Column(
