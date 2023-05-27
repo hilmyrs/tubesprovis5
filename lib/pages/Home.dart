@@ -112,7 +112,7 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-
+                //buat list view horizontal di stack positioned
                 Positioned(
                   top: 300,
                   left: 0,
