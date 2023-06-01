@@ -368,6 +368,14 @@ class _MarketplaceState extends State<Marketplace> {
                             Color.fromARGB(255, 43, 149, 133), // Warna border
                         width: 2, // Ketebalan border
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Mengatur posisi bayangan
+                        ),
+                      ],
                     ),
                     width: double.infinity,
                     height: size.height * 0.5,
@@ -562,6 +570,14 @@ class _MarketplaceState extends State<Marketplace> {
                             Color.fromARGB(255, 43, 149, 133), // Warna border
                         width: 2, // Ketebalan border
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Mengatur posisi bayangan
+                        ),
+                      ],
                     ),
                     width: double.infinity,
                     height: size.height * 0.5,
@@ -756,6 +772,14 @@ class _MarketplaceState extends State<Marketplace> {
                             Color.fromARGB(255, 43, 149, 133), // Warna border
                         width: 2, // Ketebalan border
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Mengatur posisi bayangan
+                        ),
+                      ],
                     ),
                     width: double.infinity,
                     height: size.height * 0.5,
@@ -950,6 +974,14 @@ class _MarketplaceState extends State<Marketplace> {
                             Color.fromARGB(255, 43, 149, 133), // Warna border
                         width: 2, // Ketebalan border
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Mengatur posisi bayangan
+                        ),
+                      ],
                     ),
                     width: double.infinity,
                     height: size.height * 0.5,
@@ -1144,6 +1176,14 @@ class _MarketplaceState extends State<Marketplace> {
                             Color.fromARGB(255, 43, 149, 133), // Warna border
                         width: 2, // Ketebalan border
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Mengatur posisi bayangan
+                        ),
+                      ],
                     ),
                     width: double.infinity,
                     height: size.height * 0.5,
