@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icon_badge/icon_badge.dart';
+import 'package:tubes/pages/Pembayaran.dart';
 
 class Marketplace extends StatefulWidget {
   const Marketplace({super.key});
@@ -445,7 +446,11 @@ class _MarketplaceState extends State<Marketplace> {
                         IconButton(
                           icon: Icon(Icons.add),
                           onPressed: () {
-                            // Tambahkan aksi yang ingin Anda lakukan ketika tombol ditekan
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Pembayaran()),
+                            );
                           },
                         ),
                       ],
@@ -645,7 +650,11 @@ class _MarketplaceState extends State<Marketplace> {
                         IconButton(
                           icon: Icon(Icons.add),
                           onPressed: () {
-                            // Tambahkan aksi yang ingin Anda lakukan ketika tombol ditekan
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Pembayaran()),
+                            );
                           },
                         ),
                       ],
@@ -847,7 +856,11 @@ class _MarketplaceState extends State<Marketplace> {
                         IconButton(
                           icon: Icon(Icons.add),
                           onPressed: () {
-                            // Tambahkan aksi yang ingin Anda lakukan ketika tombol ditekan
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Pembayaran()),
+                            );
                           },
                         ),
                       ],
@@ -1049,7 +1062,11 @@ class _MarketplaceState extends State<Marketplace> {
                         IconButton(
                           icon: Icon(Icons.add),
                           onPressed: () {
-                            // Tambahkan aksi yang ingin Anda lakukan ketika tombol ditekan
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Pembayaran()),
+                            );
                           },
                         ),
                       ],
@@ -1251,7 +1268,11 @@ class _MarketplaceState extends State<Marketplace> {
                         IconButton(
                           icon: Icon(Icons.add),
                           onPressed: () {
-                            // Tambahkan aksi yang ingin Anda lakukan ketika tombol ditekan
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Pembayaran()),
+                            );
                           },
                         ),
                       ],
