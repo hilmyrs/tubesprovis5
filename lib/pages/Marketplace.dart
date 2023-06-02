@@ -463,8 +463,208 @@ class _MarketplaceState extends State<Marketplace> {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                Color.fromARGB(255, 76, 147, 214),
-                                const Color.fromARGB(255, 76, 175, 132)
+                                Color.fromARGB(255, 131, 212, 255),
+                                Color.fromARGB(255, 132, 238, 192)
+                              ],
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                            ),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Ayo modalin Mitra mulai dari Rp100.000',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                            height:
+                                15), // Mengatur jarak antara box "Ayo Modalin Mitra" dengan tampilan berikutnya
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'PLAFON: Rp500.000',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              '% BAGI HASIL: 10%',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                            Text(
+                              'TENOR: 12 Bulan',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Crowd Funding',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: LinearProgressIndicator(
+                                value: 0.5, // Ubah persentase sesuai kebutuhan
+                                backgroundColor: Colors
+                                    .grey[200], // Warna latar belakang garis
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Color.fromARGB(
+                                      255, 76, 147, 214), // Warna garis
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              '1 hari lagi',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5),
+              child: Stack(
+                children: [
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                    margin: EdgeInsets.only(top: 40),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color:
+                            Color.fromARGB(255, 43, 149, 133), // Warna border
+                        width: 2, // Ketebalan border
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blueGrey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3), // Mengatur posisi bayangan
+                        ),
+                      ],
+                    ),
+                    width: double.infinity,
+                    height: size.height * 0.5,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundImage: NetworkImage(
+                            "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+                          ),
+                        ),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '[Pengguna Aplikasi]',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                '[Nama Usaha]',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 15,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                '[Lokasi]',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Text(
+                                    'Lorem ipsum dolor sit amet, consecteturdipiscing elit. Curabitur quis velit iaculis sapien hendrerit pellentesque id ac diam. Praesent at enim faucibus, pellentesque elit vel, congue ipsum.',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.add),
+                          onPressed: () {
+                            // Tambahkan aksi yang ingin Anda lakukan ketika tombol ditekan
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    left: 40,
+                    right: 40,
+                    bottom:
+                        20, // Mengubah nilai bottom sesuai dengan posisi yang diinginkan
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 45,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(255, 131, 212, 255),
+                                Color.fromARGB(255, 132, 238, 192)
                               ],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -665,8 +865,8 @@ class _MarketplaceState extends State<Marketplace> {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                Color.fromARGB(255, 76, 147, 214),
-                                const Color.fromARGB(255, 76, 175, 132)
+                                Color.fromARGB(255, 131, 212, 255),
+                                Color.fromARGB(255, 132, 238, 192)
                               ],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -867,8 +1067,8 @@ class _MarketplaceState extends State<Marketplace> {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                Color.fromARGB(255, 76, 147, 214),
-                                const Color.fromARGB(255, 76, 175, 132)
+                                Color.fromARGB(255, 131, 212, 255),
+                                Color.fromARGB(255, 132, 238, 192)
                               ],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
@@ -1069,210 +1269,8 @@ class _MarketplaceState extends State<Marketplace> {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                Color.fromARGB(255, 76, 147, 214),
-                                const Color.fromARGB(255, 76, 175, 132)
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                            ),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Ayo modalin Mitra mulai dari Rp100.000',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                            height:
-                                15), // Mengatur jarak antara box "Ayo Modalin Mitra" dengan tampilan berikutnya
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'PLAFON: Rp500.000',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              '% BAGI HASIL: 10%',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              'TENOR: 12 Bulan',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'Crowd Funding',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: LinearProgressIndicator(
-                                value: 0.5, // Ubah persentase sesuai kebutuhan
-                                backgroundColor: Colors
-                                    .grey[200], // Warna latar belakang garis
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  Color.fromARGB(
-                                      255, 76, 147, 214), // Warna garis
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              '1 hari lagi',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 5),
-              child: Stack(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                    margin: EdgeInsets.only(top: 40),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color:
-                            Color.fromARGB(255, 43, 149, 133), // Warna border
-                        width: 2, // Ketebalan border
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.blueGrey.withOpacity(0.5),
-                          spreadRadius: 3,
-                          blurRadius: 5,
-                          offset: Offset(0, 3), // Mengatur posisi bayangan
-                        ),
-                      ],
-                    ),
-                    width: double.infinity,
-                    height: size.height * 0.5,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage: NetworkImage(
-                            "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '[Pengguna Aplikasi]',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                '[Nama Usaha]',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                '[Lokasi]',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 14,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Expanded(
-                                child: SingleChildScrollView(
-                                  child: Text(
-                                    'Lorem ipsum dolor sit amet, consecteturdipiscing elit. Curabitur quis velit iaculis sapien hendrerit pellentesque id ac diam. Praesent at enim faucibus, pellentesque elit vel, congue ipsum.',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.normal,
-                                      fontSize: 14,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.add),
-                          onPressed: () {
-                            // Tambahkan aksi yang ingin Anda lakukan ketika tombol ditekan
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    left: 40,
-                    right: 40,
-                    bottom:
-                        20, // Mengubah nilai bottom sesuai dengan posisi yang diinginkan
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(255, 76, 147, 214),
-                                const Color.fromARGB(255, 76, 175, 132)
+                                Color.fromARGB(255, 131, 212, 255),
+                                Color.fromARGB(255, 132, 238, 192)
                               ],
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
