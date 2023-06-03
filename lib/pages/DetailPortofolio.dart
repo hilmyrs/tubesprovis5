@@ -94,29 +94,32 @@ class _DetailPortofolio2State extends State<DetailPortofolio2> {
                                 backgroundImage:
                                     NetworkImage(widget.modalUsaha.imageUrl),
                               ),
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Modal Usaha " + widget.modalUsaha.nama,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 15,
+                              Flexible(
+                                child: Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Modal Usaha " +
+                                              widget.modalUsaha.nama,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        widget.modalUsaha.deskripsi,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 10,
+                                        Text(
+                                          widget.modalUsaha.deskripsi,
+                                          overflow: TextOverflow.fade,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
