@@ -37,7 +37,7 @@ class _ExploreState extends State<Explore> {
     ModalUsaha(
       imageUrl:
           "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
+      nama: "Bubur Bu Kurniaaaaaaaaaaaaaaaaaaaaaaa",
       pemilik: "Ibu Kurnia",
       totalPendanaan: "Rp 2.500.000",
       bagiHasil: "12%",
@@ -438,59 +438,67 @@ class _ExploreState extends State<Explore> {
                                                         NetworkImage(modalUsaha
                                                             .imageUrl),
                                                   ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        left: 10),
-                                                    padding: EdgeInsets.all(5),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "Usaha " +
-                                                              modalUsaha.nama,
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 15,
+                                                  Flexible(
+                                                    child: Container(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10),
+                                                      padding:
+                                                          EdgeInsets.all(5),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Usaha " +
+                                                                modalUsaha.nama,
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 15,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        Text(
-                                                          modalUsaha.pemilik,
-                                                          style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 12,
-                                                          ),
-                                                        ),
-                                                        Row(
-                                                          children: [
-                                                            Icon(
-                                                              Icons
-                                                                  .location_on_outlined,
+                                                          Text(
+                                                            modalUsaha.pemilik,
+                                                            style: TextStyle(
                                                               color:
                                                                   Colors.grey,
+                                                              fontSize: 12,
                                                             ),
-                                                            Text(
-                                                              modalUsaha.lokasi,
-                                                              style: TextStyle(
+                                                          ),
+                                                          Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .location_on_outlined,
                                                                 color:
                                                                     Colors.grey,
-                                                                fontSize: 12,
                                                               ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                        Text(
-                                                          "Bagi Hasil : " +
-                                                              modalUsaha
-                                                                  .bagiHasil,
-                                                          style: TextStyle(
-                                                            color: Colors.grey,
-                                                            fontSize: 12,
+                                                              Text(
+                                                                modalUsaha
+                                                                    .lokasi,
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .grey,
+                                                                  fontSize: 12,
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
-                                                        ),
-                                                      ],
+                                                          Text(
+                                                            "Bagi Hasil : " +
+                                                                modalUsaha
+                                                                    .bagiHasil,
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.grey,
+                                                              fontSize: 12,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
