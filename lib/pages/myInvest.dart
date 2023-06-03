@@ -45,7 +45,8 @@ class _MyInvestState extends State<MyInvest> {
       status: "Sedang Berlangsung",
       lokasi: "Jawa Barat",
       lamaTenor: "10 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      deskripsi:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     ),
     ModalUsaha(
       imageUrl:
@@ -399,77 +400,86 @@ class _MyInvestState extends State<MyInvest> {
                                                         NetworkImage(modalUsaha
                                                             .imageUrl),
                                                   ),
-                                                  Container(
-                                                    margin: EdgeInsets.only(
-                                                        left: 10),
-                                                    padding: EdgeInsets.all(5),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          "Modal Usaha " +
-                                                              modalUsaha.nama,
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "Total Pendanaan : " +
-                                                              modalUsaha
-                                                                  .totalPendanaan,
-                                                          style: TextStyle(
-                                                            fontSize: 12,
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          "Bagi Hasil : " +
-                                                              modalUsaha
-                                                                  .bagiHasil,
-                                                          style: TextStyle(
-                                                            fontSize: 12,
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          modalUsaha.status,
-                                                          style: TextStyle(
-                                                            color: modalUsaha
-                                                                        .status ==
-                                                                    "Selesai"
-                                                                ? Colors.blue
-                                                                : Colors.green,
-                                                            fontSize: 12,
-                                                          ),
-                                                        ),
-                                                        if (modalUsaha.status ==
-                                                            "Selesai")
-                                                          OutlinedButton(
-                                                            onPressed: () {
-                                                              // Tambahkan logika untuk aksi tombol "Beri Rating" di sini
-                                                            },
-                                                            style:
-                                                                OutlinedButton
-                                                                    .styleFrom(
-                                                              side: BorderSide(
-                                                                color: Colors
-                                                                    .black,
-                                                              ),
-                                                              minimumSize:
-                                                                  Size(30, 20),
-                                                            ),
-                                                            child: Text(
-                                                              "Beri Rating",
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 12,
-                                                              ),
+                                                  Flexible(
+                                                    child: Container(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10),
+                                                      padding:
+                                                          EdgeInsets.all(5),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Modal Usaha " +
+                                                                modalUsaha.nama,
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 15,
                                                             ),
                                                           ),
-                                                      ],
+                                                          Text(
+                                                            "Total Pendanaan : " +
+                                                                modalUsaha
+                                                                    .totalPendanaan,
+                                                            style: TextStyle(
+                                                              fontSize: 12,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            "Bagi Hasil : " +
+                                                                modalUsaha
+                                                                    .bagiHasil,
+                                                            style: TextStyle(
+                                                              fontSize: 12,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            modalUsaha.status,
+                                                            style: TextStyle(
+                                                              color: modalUsaha
+                                                                          .status ==
+                                                                      "Selesai"
+                                                                  ? Colors.blue
+                                                                  : Colors
+                                                                      .green,
+                                                              fontSize: 12,
+                                                            ),
+                                                          ),
+                                                          if (modalUsaha
+                                                                  .status ==
+                                                              "Selesai")
+                                                            OutlinedButton(
+                                                              onPressed: () {
+                                                                // Tambahkan logika untuk aksi tombol "Beri Rating" di sini
+                                                              },
+                                                              style:
+                                                                  OutlinedButton
+                                                                      .styleFrom(
+                                                                side:
+                                                                    BorderSide(
+                                                                  color: Colors
+                                                                      .black,
+                                                                ),
+                                                                minimumSize:
+                                                                    Size(
+                                                                        30, 20),
+                                                              ),
+                                                              child: Text(
+                                                                "Beri Rating",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize: 12,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
