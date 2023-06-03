@@ -168,22 +168,6 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               )),
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 20, top: 15, bottom: 5, right: 20),
-            child: TextButton(
-              onPressed: () {
-                //TODO FORGOT PASSWORD SCREEN GOES HERE
-              },
-              child: Container(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(color: Colors.blue, fontSize: 15),
-                ),
-              ),
-            ),
-          ),
           SizedBox(
             height: 20,
           ),
@@ -210,61 +194,6 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.w600),
                 ),
               ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-                left: 50.0, right: 50.0, top: 0, bottom: 0),
-            child: Container(
-              child: Text(
-                'Or',
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          GestureDetector(
-            // onTap: () {
-            //   Navigator.pushReplacement(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) => HomePage(),
-            //       ));
-            // },
-            child: Container(
-              padding: EdgeInsets.all(16),
-              margin: EdgeInsets.symmetric(horizontal: 25),
-              decoration: BoxDecoration(
-                  color: Color(0xff3e4784),
-                  borderRadius: BorderRadius.circular(25)),
-              child: Center(
-                  child: Row(children: <Widget>[
-                Expanded(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Image.network(
-                      'https://4.bp.blogspot.com/-HwsTmAk0ZiQ/We1Qg0wlSxI/AAAAAAAAtYA/zerxp_qWC3gRSoQGTbmTv-ngJ5JL72E0gCK4BGAYYCw/s200/g.png',
-                      width: 25,
-                      height: 25,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Login with Google",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                ))
-              ])),
             ),
           ),
           SizedBox(
