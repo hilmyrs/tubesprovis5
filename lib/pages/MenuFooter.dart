@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 //import 'package:tubes/pages/RegisterPage.dart';
 //import 'package:tubes/pages/LoginPage.dart';
 import 'package:tubes/pages/Home.dart';
+import 'CobaWallet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     Home(),
     Home(),
     Home(),
-    Home(),
+    CobaWallet(),
     Home(),
   ];
 
