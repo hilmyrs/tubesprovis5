@@ -10,407 +10,168 @@ class Withdraw extends StatefulWidget {
 }
 
 class _WithdrawState extends State<Withdraw> {
+  int? selectedMethod;
+  List<int> pilihanNominal = [
+    500000,
+    1000000,
+    2000000,
+    2500000,
+    5000000,
+    10000000,
+  ];
+  TextEditingController nominalController = TextEditingController();
+  double saldo = 500000; // Contoh saldo
+
   @override
+  void dispose() {
+    nominalController.dispose();
+    super.dispose();
+  }
+
+  final List<Map> myProducts =
+      List.generate(10, (index) => {"id": index, "name": "Product $index"})
+          .toList();
+
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                padding: const EdgeInsets.only(top: 30),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          'Withdraw',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: true, // Menampilkan panah kembali
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ), // Mengubah warna panah kembali menjadi hitam
+      ),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Stack(
+            children: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+                margin: const EdgeInsets.only(top: 100),
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(142, 212, 178, 1),
+                ),
+                width: double.infinity,
+                height: 750,
+              ),
+              //container yg rounded rectangle
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+                //margin: const EdgeInsets.only(top: 50),
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(142, 212, 178, 1),
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(
+                    color:
+                        const Color.fromRGBO(142, 220, 179, 1), // Warna border
+                    width: 1, // Ketebalan border
+                  ),
+                ),
+                width: double.infinity,
+                height: 800,
                 child: Column(
                   children: [
-                    Align(
-                      alignment: Alignment.center,
+                    //Text Total Saldo
+                    const Align(
+                      alignment: Alignment.topLeft,
                       child: Text(
-                        'Wallet',
+                        "Total Saldo",
+                        textAlign: TextAlign.left,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
+                            fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Stack(
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-                  margin: EdgeInsets.only(top: 50),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(142, 220, 179, 1),
-                    borderRadius: BorderRadius.circular(40),
-                    border: Border.all(
-                      color: Color.fromRGBO(142, 220, 179, 1), // Warna border
-                      width: 1, // Ketebalan border
+                    const SizedBox(
+                      height: 10,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(
-                            0.2), // Warna bayangan (black) dengan opasitas 0.2
-                        spreadRadius: 2, // Jarak penyebaran bayangan
-                        blurRadius: 4, // Jarak blur bayangan
-                        offset: Offset(0,
-                            2), // Posisi offset bayangan (horizontal, vertical)
-                      ),
-                    ],
-                  ),
-                  width: double.infinity,
-                  height: 800,
-                ),
-                Center(
-                  child: Container(
-                    child: Column(
+
+                    //*********************
+                    //
+                    // Row Icon Wallet + Total saldo
+                    // To Do ganti variabel text
+                    //
+                    // */
+                    Row(
                       children: [
-                        CircleAvatar(
-                          radius: 60,
-                          backgroundImage: NetworkImage(
-                              "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"),
+                        const Icon(
+                          Icons.account_balance_wallet,
+                          color: Colors.black,
+                          size: 40.0,
                         ),
-                        SizedBox(height: 15),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'Halo, [Investor / UMKM]!',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 40, horizontal: 40),
-                          margin: EdgeInsets.only(top: 20),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                            border: Border.all(
-                              color: Color.fromRGBO(
-                                  142, 220, 179, 1), // Warna border
-                              width: 1, // Ketebalan border
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(
-                                    0.2), // Warna bayangan (black) dengan opasitas 0.2
-                                spreadRadius: 2, // Jarak penyebaran bayangan
-                                blurRadius: 4, // Jarak blur bayangan
-                                offset: Offset(0,
-                                    2), // Posisi offset bayangan (horizontal, vertical)
-                              ),
-                            ],
-                          ),
-                          width: 450,
-                          height: 230,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Total Saldo',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.account_balance_wallet,
-                                    size: 30,
-                                    color: Colors.black,
-                                  ),
-                                  SizedBox(
-                                      width:
-                                          10), // Tambahkan jarak antara ikon dan teks nominal
-                                  Text(
-                                    'Rp5.000.000',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 20),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Top Up',
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(width: 200),
-                                  Text(
-                                    'Withdraw',
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.add_circle_outline_outlined,
-                                      size: 30, color: Colors.black),
-                                  SizedBox(width: 220),
-                                  Icon(Icons.add_circle_outline_outlined,
-                                      size: 30, color: Colors.black),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 25),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 25, right: 25, bottom: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("Activity",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                  )),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                  top: 10,
-                                  left: 25,
-                                  right: 25,
-                                ),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(
-                                            0.2), // Warna bayangan (black) dengan opasitas 0.2
-                                        spreadRadius:
-                                            2, // Jarak penyebaran bayangan
-                                        blurRadius: 4, // Jarak blur bayangan
-                                        offset: Offset(0,
-                                            2), // Posisi offset bayangan (horizontal, vertical)
-                                      ),
-                                    ]),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 10, bottom: 20, right: 20, left: 20),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        height: 50,
-                                        child: Center(
-                                            child: Icon(
-                                          Icons.payment,
-                                          color: Colors.black,
-                                        )),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          width: (size.width - 90) * 0.7,
-                                          child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Transfer ke Bank",
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  "Ke BRI C**** P****",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Colors.black
-                                                          .withOpacity(0.5),
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  "27 Mei 2023",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Colors.black
-                                                          .withOpacity(0.5),
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ]),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "-Rp1.000.000",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.red),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(
-                                  top: 10,
-                                  left: 25,
-                                  right: 25,
-                                ),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(
-                                            0.2), // Warna bayangan (black) dengan opasitas 0.2
-                                        spreadRadius:
-                                            2, // Jarak penyebaran bayangan
-                                        blurRadius: 4, // Jarak blur bayangan
-                                        offset: Offset(0,
-                                            2), // Posisi offset bayangan (horizontal, vertical)
-                                      ),
-                                    ]),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 10, bottom: 20, right: 20, left: 20),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 50,
-                                        height: 50,
-                                        child: Center(
-                                            child: Icon(
-                                          Icons.payment,
-                                          color: Colors.black,
-                                        )),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          width: (size.width - 90) * 0.7,
-                                          child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Isi Saldo",
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  "Dari BNI A*** Z***",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Colors.black
-                                                          .withOpacity(0.5),
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  "26 Mei 2023",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      color: Colors.black
-                                                          .withOpacity(0.5),
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ]),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "+Rp500.000",
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.green),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                        const SizedBox(width: 5),
+                        const Text(
+                          "Rp. X.XXX.XXX",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 18),
                         ),
                       ],
                     ),
-                  ),
+                    //white space
+                    SizedBox(
+                      height: 20,
+                    ),
+                    //form buat withdraw
+                    TextFormField(
+                      controller: nominalController,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Color.fromRGBO(247, 247, 247, 1),
+                        labelText: 'Mau tarik berapa?',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Color.fromRGBO(127, 199, 164, 1)),
+                            borderRadius: BorderRadius.circular(15)),
+                        labelStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        prefixText: 'Rp. ', // Menambahkan "Rp." sebelum label
+                        prefixStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+
+                    SizedBox(height: 20),
+                    //***
+                    //Pilihan Nominal Uang
+                    //
+                    // */
+                    Expanded(
+                      child: GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                          ),
+                          itemCount: 6,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Card(
+                              color: Colors.amber,
+                              child: Center(child: Text('$index')),
+                            );
+                          }),
+                    )
+                  ],
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          )
+        ]),
       ),
     );
   }

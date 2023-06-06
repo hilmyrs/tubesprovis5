@@ -323,10 +323,19 @@ class _HomeState extends State<Home> {
                                             ),
                                             SizedBox(width: 5),
                                             //Withdraw
-                                            Icon(
-                                              Icons.add_circle_outline,
-                                              color: Colors.black,
-                                              size: 30.0,
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const Withdraw()));
+                                              },
+                                              child: const Icon(
+                                                Icons.add_circle_outline,
+                                                color: Colors.black,
+                                                size: 30.0,
+                                              ),
                                             ),
                                           ],
                                         )
