@@ -11,13 +11,13 @@ class Withdraw extends StatefulWidget {
 
 class _WithdrawState extends State<Withdraw> {
   int? selectedMethod;
-  List<int> pilihanNominal = [
-    500000,
-    1000000,
-    2000000,
-    2500000,
-    5000000,
-    10000000,
+  List<String> pilihanNominal = [
+    '500 ribu',
+    '1 juta',
+    '2 juta',
+    '2,5 juta',
+    '5 juta',
+    'Semua',
   ];
   TextEditingController nominalController = TextEditingController();
   double saldo = 500000; // Contoh saldo
@@ -158,11 +158,11 @@ class _WithdrawState extends State<Withdraw> {
                               const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                           ),
-                          itemCount: 6,
-                          itemBuilder: (BuildContext context, int index) {
+                          itemCount: pilihanNominal.length,
+                          itemBuilder: (BuildContext context, index) {
                             return Card(
-                              color: Colors.amber,
-                              child: Center(child: Text('$index')),
+                              color: Color.fromRGBO(247, 247, 247, 1),
+                              child: Center(child: Text(pilihanNominal[index])),
                             );
                           }),
                     )
