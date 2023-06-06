@@ -495,35 +495,64 @@ class _MarketplaceState extends State<Marketplace> {
                             height:
                                 15), // Mengatur jarak antara box "Ayo Modalin Mitra" dengan tampilan berikutnya
                         Center(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
                             children: [
-                              Expanded(
-                                child: Text(
-                                  'PLAFON: Rp500.000',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'PLAFON',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(width: 55),
+                                  Text(
+                                    'BAGI HASIL',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  SizedBox(width: 55),
+                                  Text(
+                                    'TENOR',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Expanded(
-                                child: Text(
-                                  '% BAGI HASIL: 10%',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                              SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Rp500.000',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  'TENOR: 12 Bulan',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
+                                  SizedBox(width: 70),
+                                  Text(
+                                    '10%',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                    ),
                                   ),
-                                ),
+                                  SizedBox(width: 70),
+                                  Text(
+                                    '12 Bulan',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
