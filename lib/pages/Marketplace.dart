@@ -494,31 +494,39 @@ class _MarketplaceState extends State<Marketplace> {
                         SizedBox(
                             height:
                                 15), // Mengatur jarak antara box "Ayo Modalin Mitra" dengan tampilan berikutnya
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'PLAFON: Rp500.000',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
+                        Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'PLAFON: Rp500.000',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Text(
-                              '% BAGI HASIL: 10%',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
+                              Expanded(
+                                child: Text(
+                                  '% BAGI HASIL: 10%',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Text(
-                              'TENOR: 12 Bulan',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
+                              Expanded(
+                                child: Text(
+                                  'TENOR: 12 Bulan',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                         SizedBox(
                           height: 15,
