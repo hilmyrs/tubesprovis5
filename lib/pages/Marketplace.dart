@@ -99,7 +99,7 @@ class _MarketplaceState extends State<Marketplace> {
     return Scaffold(
         backgroundColor: Color.fromRGBO(142, 212, 178, 1),
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 64, 197, 177),
+          backgroundColor: Color.fromRGBO(101, 186, 181, 1),
           title: Text(
             'Marketplace',
             style: TextStyle(
@@ -449,16 +449,6 @@ class _MarketplaceState extends State<Marketplace> {
                             ],
                           ),
                         ),
-                        IconButton(
-                          icon: Icon(Icons.add),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Pembayaran()),
-                            );
-                          },
-                        ),
                       ],
                     ),
                   ),
@@ -466,28 +456,40 @@ class _MarketplaceState extends State<Marketplace> {
                     left: 40,
                     right: 40,
                     bottom:
-                        20, // Mengubah nilai bottom sesuai dengan posisi yang diinginkan
+                        35, // Mengubah nilai bottom sesuai dengan posisi yang diinginkan
                     child: Column(
                       children: [
-                        Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(255, 131, 212, 255),
-                                Color.fromARGB(255, 132, 238, 192)
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Pembayaran(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            height: 45,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Color.fromARGB(255, 131, 212, 255),
+                                  Color.fromARGB(255, 132, 238, 192),
+                                ],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                              ),
+                              borderRadius: BorderRadius.circular(30),
                             ),
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Ayo modalin Mitra mulai dari Rp100.000',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
+                            child: Center(
+                              child: Text(
+                                'Ayo modalin Mitra mulai dari Rp100.000',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -525,7 +527,7 @@ class _MarketplaceState extends State<Marketplace> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 8),
+                              SizedBox(height: 1),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
