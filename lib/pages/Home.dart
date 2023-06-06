@@ -344,13 +344,6 @@ class _HomeState extends State<Home> {
                                     //SizedBox(width: 4),
                                   ]),
                                   //Row buat icon
-                                  Row(
-                                    children: [
-                                      //Wallet
-
-                                      //Spacer(),
-                                    ],
-                                  )
                                 ],
                               ),
                             ),
