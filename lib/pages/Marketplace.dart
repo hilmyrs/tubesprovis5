@@ -469,7 +469,7 @@ class _MarketplaceState extends State<Marketplace> {
                             );
                           },
                           child: Container(
-                            height: 45,
+                            height: 38,
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [
