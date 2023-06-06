@@ -97,7 +97,7 @@ class _MarketplaceState extends State<Marketplace> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: Color.fromARGB(99, 147, 213, 194),
+        backgroundColor: Color.fromRGBO(142, 212, 178, 1),
         appBar: AppBar(
           backgroundColor: Color.fromARGB(255, 64, 197, 177),
           title: Text(

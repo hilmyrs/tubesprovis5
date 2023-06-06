@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 //import 'package:tubes/pages/RegisterPage.dart';
 //import 'package:tubes/pages/LoginPage.dart';
 import 'package:tubes/pages/Home.dart';
+import 'package:tubes/pages/Marketplace.dart';
 import 'CobaWallet.dart';
+//import 'Explore.dart';
+import 'myInvest.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,8 +22,8 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> pages = [
     //masih placeholder
-    Home(),
-    Home(),
+    Marketplace(),
+    MyInvest(),
     Home(),
     CobaWallet(),
     Home(),
