@@ -99,7 +99,7 @@ class _MarketplaceState extends State<Marketplace> {
     return Scaffold(
         backgroundColor: Color.fromRGBO(142, 212, 178, 1),
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(101, 186, 181, 1),
+          backgroundColor: Color.fromARGB(255, 64, 197, 177),
           title: Text(
             'Marketplace',
             style: TextStyle(
