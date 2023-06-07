@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:tubes/pages/Home.dart';
 import 'package:tubes/pages/Marketplace.dart';
 import 'CobaWallet.dart';
-//import 'Explore.dart';
+import 'Account.dart';
 import 'myInvest.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     MyInvest(),
     Home(),
     CobaWallet(),
-    Home(),
+    Account(),
   ];
 
   @override
@@ -60,31 +60,21 @@ class _HomePageState extends State<HomePage> {
       'Wallet',
       'Account',
     ];
-    return Container(
-      color: Color.fromARGB(100, 0, 195, 137),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: List.generate(iconItems.length, (index) {
-          return Expanded(
-            child: GestureDetector(
-              onTap: () {
-                setTabs(index);
-              },
-              child: Container(
-                color: pageIndex == index ? Color(0xFFdbe4f3) : null,
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  iconItems[index],
-                  size: 25,
-                  color: pageIndex == index
-                      ? Colors.black
-                      : Colors.black.withOpacity(0.5),
-                ),
-              ),
-            ),
-          );
-        }),
-      ),
+    BottomNavigationBarThemeData theme = BottomNavigationBarThemeData(
+      backgroundColor: Colors.green,
+    );
+
+    return BottomNavigationBar(
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.black.withOpacity(0.5),
+      currentIndex: pageIndex,
+      onTap: setTabs,
+      items: List.generate(iconItems.length, (index) {
+        return BottomNavigationBarItem(
+          icon: Icon(iconItems[index]),
+          label: iconLabels[index],
+        );
+      }),
     );
   }
 

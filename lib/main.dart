@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 //import 'package:tubes/pages/FirstPage.dart';
 import 'package:tubes/pages/LandingPage.dart';
+import 'package:tubes/pages/MenuFooter.dart';
 
 void main() {
   runApp(const MyApp());
