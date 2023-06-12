@@ -19,9 +19,12 @@ class _WithdrawState extends State<Withdraw> {
     '5 juta',
     'Semua',
   ];
-  TextEditingController nominalController = TextEditingController();
+  final nominalController = TextEditingController();
   double saldo = 500000; // Contoh saldo
 
+  int selectedRadioIndex = -1;
+  List<String> dropdownValues = ['Option 1', 'Option 2'];
+  List<String> radioOptions = ['Bank', 'E-Wallet'];
   @override
   void dispose() {
     nominalController.dispose();
@@ -135,7 +138,7 @@ class _WithdrawState extends State<Withdraw> {
                             borderSide: const BorderSide(
                                 color: Color.fromRGBO(127, 199, 164, 1)),
                             borderRadius: BorderRadius.circular(15)),
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
@@ -152,20 +155,152 @@ class _WithdrawState extends State<Withdraw> {
                     //Pilihan Nominal Uang
                     //
                     // */
+                    GridView.builder(
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                          childAspectRatio: 2.0,
+                        ),
+                        itemCount: pilihanNominal.length,
+                        itemBuilder: (BuildContext context, index) {
+                          return Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              side: BorderSide(
+                                color: selectedMethod == index
+                                    ? Color(0xff3e4784)
+                                    : Colors.transparent,
+                                width: 1.5,
+                              ),
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedMethod = index;
+                                });
+                              },
+                              child: Container(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    pilihanNominal[index],
+                                    style: TextStyle(
+                                        color: selectedMethod == index
+                                            ? Color(0xff3e4784)
+                                            : Colors.black,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                            ),
+                          );
+                        }),
+
+                    //
+                    //White space
+                    //
+
+                    const SizedBox(height: 20),
+
+                    //****
+                    //
+                    //Pilih Tarik ke mana (radio option)
+                    //
+                    // */
+
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Tarik ke",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    //list view builder
                     Expanded(
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
+                      child: Column(children: [
+                        Container(
+                          height: 200,
+                          child: ListView.builder(
+                              itemCount: 2,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Column(
+                                  children: [
+                                    ListTile(
+                                      title: Text(
+                                        radioOptions[index],
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      //Radio
+                                      leading: Radio(
+                                        value: index,
+                                        groupValue: selectedRadioIndex,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            selectedRadioIndex = value!;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                    if (selectedRadioIndex == index)
+                                      Container(
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
+                                        width: 250,
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          border: Border.all(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        //Dropdown
+                                        child: DropdownButton<String>(
+                                          value: dropdownValues[index],
+                                          onChanged: (newValue) {},
+                                          items: dropdownValues.map((value) {
+                                            return DropdownMenuItem<String>(
+                                              value: value,
+                                              child: Text(
+                                                value,
+                                              ),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
+                                  ],
+                                );
+                              }),
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            margin: EdgeInsets.symmetric(horizontal: 25),
+                            decoration: BoxDecoration(
+                                color: Color(0xff3e4784),
+                                borderRadius: BorderRadius.circular(25)),
+                            child: Center(
+                              child: Text(
+                                "Lanjut",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
                           ),
-                          itemCount: pilihanNominal.length,
-                          itemBuilder: (BuildContext context, index) {
-                            return Card(
-                              color: Color.fromRGBO(247, 247, 247, 1),
-                              child: Center(child: Text(pilihanNominal[index])),
-                            );
-                          }),
-                    )
+                        ),
+                      ]),
+                    ),
                   ],
                 ),
               ),

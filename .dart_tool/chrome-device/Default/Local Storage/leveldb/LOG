@@ -1,46 +1,14 @@
-2023/06/06-10:54:24.641 40d8 Reusing MANIFEST C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3e7fd613\flutter_tools_chrome_device.cfbce314\Default\Local Storage\leveldb/MANIFEST-000001
-2023/06/06-10:54:24.643 40d8 Recovering log #39
-2023/06/06-10:54:24.646 40d8 Reusing old log C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3e7fd613\flutter_tools_chrome_device.cfbce314\Default\Local Storage\leveldb/000039.log 
-2023/06/06-10:54:24.647 40d8 Delete type=0 #3
-2023/06/06-11:21:32.220 15fc Level-0 table #43: started
-2023/06/06-11:21:32.225 15fc Level-0 table #43: 70017 bytes OK
-2023/06/06-11:21:32.227 15fc Delete type=0 #39
-2023/06/06-11:21:32.228 15fc Compacting 4@0 + 1@1 files
-2023/06/06-11:21:32.233 15fc Generated table #44@0: 456 keys, 243134 bytes
-2023/06/06-11:21:32.234 15fc Compacted 4@0 + 1@1 files => 243134 bytes
-2023/06/06-11:21:32.236 15fc compacted to: files[ 0 1 1 0 0 0 0 ]
-2023/06/06-11:21:32.237 15fc Delete type=2 #34
-2023/06/06-11:21:32.237 15fc Delete type=2 #36
-2023/06/06-11:21:32.237 15fc Delete type=2 #38
-2023/06/06-11:21:32.237 15fc Delete type=2 #40
-2023/06/06-11:21:32.237 15fc Delete type=2 #43
-2023/06/06-11:34:43.085 15fc Level-0 table #46: started
-2023/06/06-11:34:43.091 15fc Level-0 table #46: 50930 bytes OK
-2023/06/06-11:34:43.093 15fc Delete type=0 #42
-2023/06/06-11:42:13.033 40d8 Level-0 table #48: started
-2023/06/06-11:42:13.038 40d8 Level-0 table #48: 92647 bytes OK
-2023/06/06-11:42:13.040 40d8 Delete type=0 #45
-2023/06/06-11:43:08.349 15fc Level-0 table #50: started
-2023/06/06-11:43:08.355 15fc Level-0 table #50: 51688 bytes OK
-2023/06/06-11:43:08.357 15fc Delete type=0 #47
-2023/06/06-12:12:48.200 15fc Level-0 table #52: started
-2023/06/06-12:12:48.204 15fc Level-0 table #52: 46497 bytes OK
-2023/06/06-12:12:48.206 15fc Delete type=0 #49
-2023/06/06-12:12:48.207 15fc Compacting 4@0 + 1@1 files
-2023/06/06-12:12:48.214 15fc Generated table #53@0: 486 keys, 306657 bytes
-2023/06/06-12:12:48.214 15fc Compacted 4@0 + 1@1 files => 306657 bytes
-2023/06/06-12:12:48.215 15fc compacted to: files[ 0 1 1 0 0 0 0 ]
-2023/06/06-12:12:48.216 15fc Delete type=2 #44
-2023/06/06-12:12:48.216 15fc Delete type=2 #46
-2023/06/06-12:12:48.216 15fc Delete type=2 #48
-2023/06/06-12:12:48.216 15fc Delete type=2 #50
-2023/06/06-12:12:48.216 15fc Delete type=2 #52
-2023/06/06-12:15:08.776 15fc Level-0 table #55: started
-2023/06/06-12:15:08.779 15fc Level-0 table #55: 29661 bytes OK
-2023/06/06-12:15:08.780 15fc Delete type=0 #51
-2023/06/06-12:15:14.936 15fc Level-0 table #57: started
-2023/06/06-12:15:14.940 15fc Level-0 table #57: 79415 bytes OK
-2023/06/06-12:15:14.942 15fc Delete type=0 #54
-2023/06/06-12:33:56.902 40d8 Level-0 table #59: started
-2023/06/06-12:33:56.908 40d8 Level-0 table #59: 44562 bytes OK
-2023/06/06-12:33:56.910 40d8 Delete type=0 #56
+2023/06/12-12:29:49.255 337c Reusing MANIFEST C:\Users\HILMY\AppData\Local\Temp\flutter_tools.e7362db5\flutter_tools_chrome_device.70ef9fe5\Default\Local Storage\leveldb/MANIFEST-000001
+2023/06/12-12:29:49.259 337c Recovering log #61
+2023/06/12-12:29:49.266 337c Reusing old log C:\Users\HILMY\AppData\Local\Temp\flutter_tools.e7362db5\flutter_tools_chrome_device.70ef9fe5\Default\Local Storage\leveldb/000061.log 
+2023/06/12-12:29:49.280 337c Delete type=0 #3
+2023/06/12-12:29:49.280 337c Delete type=2 #34
+2023/06/12-12:29:49.280 337c Delete type=2 #36
+2023/06/12-12:29:49.280 337c Delete type=2 #38
+2023/06/12-12:29:49.280 337c Delete type=0 #39
+2023/06/12-12:29:49.280 337c Delete type=2 #40
+2023/06/12-12:29:49.280 337c Delete type=2 #53
+2023/06/12-12:29:49.280 337c Delete type=2 #55
+2023/06/12-12:29:49.281 337c Delete type=2 #57
+2023/06/12-12:29:49.281 337c Delete type=0 #58
+2023/06/12-12:29:49.281 337c Delete type=2 #59

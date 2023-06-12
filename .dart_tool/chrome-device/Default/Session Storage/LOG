@@ -1,7 +1,16 @@
-2023/06/06-10:54:24.683 40d8 Reusing MANIFEST C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3e7fd613\flutter_tools_chrome_device.cfbce314\Default\Session Storage/MANIFEST-000001
-2023/06/06-10:54:24.684 40d8 Recovering log #10
-2023/06/06-10:54:24.687 40d8 Reusing old log C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3e7fd613\flutter_tools_chrome_device.cfbce314\Default\Session Storage/000010.log 
-2023/06/06-10:54:24.688 40d8 Delete type=0 #3
-2023/06/06-12:01:24.556 15fc Level-0 table #14: started
-2023/06/06-12:01:24.559 15fc Level-0 table #14: 14654 bytes OK
-2023/06/06-12:01:24.563 15fc Delete type=0 #10
+2023/06/12-12:29:49.306 4794 Reusing MANIFEST C:\Users\HILMY\AppData\Local\Temp\flutter_tools.e7362db5\flutter_tools_chrome_device.70ef9fe5\Default\Session Storage/MANIFEST-000001
+2023/06/12-12:29:49.309 4794 Recovering log #13
+2023/06/12-12:29:49.310 4794 Level-0 table #16: started
+2023/06/12-12:29:49.318 4794 Level-0 table #16: 13999 bytes OK
+2023/06/12-12:29:49.329 4794 Delete type=0 #3
+2023/06/12-12:29:49.329 4794 Delete type=0 #10
+2023/06/12-12:29:49.329 4794 Delete type=0 #13
+2023/06/12-12:29:49.330 337c Compacting 4@0 + 1@1 files
+2023/06/12-12:29:49.347 337c Generated table #18@0: 1063 keys, 21225 bytes
+2023/06/12-12:29:49.348 337c Compacted 4@0 + 1@1 files => 21225 bytes
+2023/06/12-12:29:49.354 337c compacted to: files[ 0 1 1 0 0 0 0 ]
+2023/06/12-12:29:49.357 337c Delete type=2 #7
+2023/06/12-12:29:49.357 337c Delete type=2 #9
+2023/06/12-12:29:49.357 337c Delete type=2 #11
+2023/06/12-12:29:49.357 337c Delete type=2 #14
+2023/06/12-12:29:49.357 337c Delete type=2 #16

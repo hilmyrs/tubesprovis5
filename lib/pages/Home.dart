@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icon_badge/icon_badge.dart';
+import 'Account.dart';
 import 'Withdraw.dart';
+import 'Topup.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -42,11 +44,17 @@ class _HomeState extends State<Home> {
                         ),
                       ],
                     ),
-                    SizedBox(width: 60),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(
-                          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"),
+                    const SizedBox(width: 60),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Account()));
+                      },
+                      child: const CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                            "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"),
+                      ),
                     ),
                   ],
                 ),
@@ -302,10 +310,19 @@ class _HomeState extends State<Home> {
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 9),
                                             ),
-                                            Icon(
-                                              Icons.add_circle_outline,
-                                              color: Colors.black,
-                                              size: 30.0,
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const Topup()));
+                                              },
+                                              child: const Icon(
+                                                Icons.add_circle_outline,
+                                                color: Colors.black,
+                                                size: 30.0,
+                                              ),
                                             ),
                                           ],
                                         ),

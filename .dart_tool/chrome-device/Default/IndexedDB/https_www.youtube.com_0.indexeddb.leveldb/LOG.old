@@ -1,3 +1,16 @@
-2023/06/06-12:19:33.094 24a4 Reusing MANIFEST C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3e7fd613\flutter_tools_chrome_device.cfbce314\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
-2023/06/06-12:19:33.094 24a4 Recovering log #11
-2023/06/06-12:19:33.094 24a4 Reusing old log C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3e7fd613\flutter_tools_chrome_device.cfbce314\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000011.log 
+2023/06/06-13:50:13.396 15f0 Reusing MANIFEST C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3823227d\flutter_tools_chrome_device.11eef594\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/06/06-13:50:13.396 15f0 Recovering log #11
+2023/06/06-13:50:13.398 15f0 Reusing old log C:\Users\HILMY\AppData\Local\Temp\flutter_tools.3823227d\flutter_tools_chrome_device.11eef594\Default\IndexedDB\https_www.youtube.com_0.indexeddb.leveldb/000011.log 
+2023/06/06-13:50:13.398 15f0 Delete type=0 #4
+2023/06/06-13:50:13.398 15f0 Delete type=2 #5
+2023/06/06-13:50:13.407 21c8 Level-0 table #16: started
+2023/06/06-13:50:13.410 21c8 Level-0 table #16: 84869 bytes OK
+2023/06/06-13:50:13.412 21c8 Delete type=0 #11
+2023/06/06-13:50:13.412 21c8 Manual compaction at level-0 from '\x00\x04\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at (end)
+2023/06/06-13:50:13.412 21c8 Manual compaction at level-1 from '\x00\x04\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at '\x00\x04\x01\x1f\x04\x03\x01\x06\x00Q\x00U\x00E\x00U\x00E\x00D\x03\x00\x00\x00\x00\x00\x00L@\x03\x00\x00p?\xf3\x88xB\x00\x03\x00\x00\x00\x00\x00\x000@' @ 6040 : 1
+2023/06/06-13:50:13.413 21c8 Compacting 1@1 + 1@2 files
+2023/06/06-13:50:13.415 21c8 Generated table #17@1: 42 keys, 1103 bytes
+2023/06/06-13:50:13.415 21c8 Compacted 1@1 + 1@2 files => 1103 bytes
+2023/06/06-13:50:13.417 21c8 compacted to: files[ 0 0 1 0 0 0 0 ]
+2023/06/06-13:50:13.417 21c8 Delete type=2 #16
+2023/06/06-13:50:13.417 21c8 Manual compaction at level-1 from '\x00\x04\x01\x1f\x04\x03\x01\x06\x00Q\x00U\x00E\x00U\x00E\x00D\x03\x00\x00\x00\x00\x00\x00L@\x03\x00\x00p?\xf3\x88xB\x00\x03\x00\x00\x00\x00\x00\x000@' @ 6040 : 1 .. '\x00\x05\x00\x00\x00' @ 0 : 0; will stop at (end)
