@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tubes/pages/DetailPortofolio2.dart';
+import 'package:tubes/pages/DetailPeminjaman.dart';
 import 'package:tubes/pages/Tagihan.dart';
-import 'DetailPortofolio.dart';
-import 'PeminjamanBaru.dart';
+import 'package:tubes/pages/PeminjamanBaru.dart';
 
 class Peminjaman extends StatefulWidget {
   const Peminjaman({super.key});
@@ -410,7 +409,7 @@ class _PeminjamanState extends State<Peminjaman> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                DetailPortofolio2(
+                                                DetailPeminjaman(
                                                     modalUsaha: modalUsaha),
                                           ),
                                         );

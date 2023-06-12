@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'Peminjaman.dart';
+import 'package:tubes/pages/Peminjaman.dart';
 
 class Tagihan extends StatefulWidget {
   @override
