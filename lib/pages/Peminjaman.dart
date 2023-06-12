@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tubes/pages/Marketplace%20copy.dart';
+import 'package:tubes/pages/DetailPortofolio2.dart';
 import 'package:tubes/pages/Tagihan.dart';
 import 'DetailPortofolio.dart';
 import 'PeminjamanBaru.dart';
