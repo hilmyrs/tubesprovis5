@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'EditProfile.dart';
 
 class Account extends StatefulWidget {
   @override
@@ -6,47 +7,6 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
-  void showEditDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Edit Informasi Pribadi'),
-          content: Column(
-            children: [
-              TextField(
-                decoration: InputDecoration(labelText: 'Nama Lengkap'),
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'No Handphone'),
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'KTP'),
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Selfie'),
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Simpan'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Batal'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,18 +30,24 @@ class _AccountState extends State<Account> {
               width: double.infinity,
               color: Color.fromARGB(
                   255, 235, 232, 232), // Ganti warna sesuai kebutuhan
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 10),
-                  Text(
-                    'Halo Investor',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    CircleAvatar(
+                      radius: 40,
+                      child: Icon(Icons.person),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 10),
+                    Text(
+                      'Halo Investor',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 20),
@@ -142,7 +108,14 @@ class _AccountState extends State<Account> {
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                       GestureDetector(
-                        onTap: showEditDialog,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditPage(),
+                            ),
+                          );
+                        },
                         child: Text(
                           'EDIT',
                           style: TextStyle(
