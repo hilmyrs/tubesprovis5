@@ -182,7 +182,7 @@ def add_dompet():
         DB_NAME = "tubesProvis.db"
         con = sqlite3.connect(DB_NAME)
         cur = con.cursor()
-        cur.execute("""insert into dompet (total_saldo) values ("0")""")
+        cur.execute("""insert into dompet (total_saldo) values ("100000")""")
         con.commit()
     except:
         return ({"status":"terjadi error"})   
