@@ -28,8 +28,12 @@ class _HomePage2State extends State<HomePage2> {
       Explore(),
       Peminjaman(),
       Home(data: a),
-      CobaWallet(),
-      Account(),
+      CobaWallet(
+        data: a,
+      ),
+      Account(
+        data: a,
+      ),
     ];
   }
 
