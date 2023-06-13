@@ -79,13 +79,11 @@ Future<void> registerUser(
 
 class _RegisterPageState extends State<RegisterPage> {
   TextEditingController dateinput = TextEditingController();
-  TextEditingController _email =
-      TextEditingController(text: "Username@gmail.com");
-  TextEditingController _phone = TextEditingController(text: "081234567891");
-  TextEditingController _address =
-      TextEditingController(text: "Gegerkalong, Bandung");
-  TextEditingController _name = TextEditingController(text: "Park Chanyeol");
-  TextEditingController _password = TextEditingController(text: "abcdef123456");
+  TextEditingController _email = TextEditingController();
+  TextEditingController _phone = TextEditingController();
+  TextEditingController _address = TextEditingController();
+  TextEditingController _name = TextEditingController();
+  TextEditingController _password = TextEditingController();
   String _roles = "Investor";
   List<DropdownMenuItem<String>> roles = [
     const DropdownMenuItem<String>(
@@ -541,23 +539,15 @@ class _RegisterPageState extends State<RegisterPage> {
           Padding(
             padding: const EdgeInsets.only(
                 left: 0.0, right: 0.0, top: 15, bottom: 0),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Dengan mendaftar Anda menyetujui '),
-                InkWell(
-                  // onTap: () {
-                  //   Navigator.push(context,
-                  //       MaterialPageRoute(builder: (_) => LoginPage()));
-                  // },
-
-                  //Sebelum ke login harus bisa simpen ke db dulu ygy
-                  child: Text(
-                    'Syarat & Ketentuan.',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      decoration: TextDecoration.underline,
-                    ),
+                Text(
+                  'Syarat & Ketentuan.',
+                  style: TextStyle(
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
                   ),
                 ),
               ],
