@@ -19,19 +19,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int pageIndex = 2;
-  late String a;
+  late String id;
   late List<Widget> pages;
 
   @override
   void initState() {
     super.initState();
-    a = widget.data;
+    id = widget.data;
     pages = [
       Marketplace(),
       MyInvest(),
-      Home(data: a),
-      CobaWallet(),
-      Account(),
+      Home(data: id),
+      CobaWallet(
+        data: id,
+      ),
+      Account(data: id),
     ];
   }
 

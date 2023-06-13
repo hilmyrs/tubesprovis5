@@ -106,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
     String email = _email.text;
     String password = _password.text;
     String name = _name.text;
-    String birthdate = _phone.text;
+    String birthdate = dateinput.text;
     String phone = _phone.text;
     String address = _address.text;
     String roles = _roles;

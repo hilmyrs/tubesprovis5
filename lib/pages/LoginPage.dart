@@ -27,7 +27,8 @@ Future<void> loginUser(
   );
 
   if (response.statusCode == 200) {
-    String data = "Rafi";
+    final responseData = jsonDecode(response.body);
+    String id = responseData['id'];
     // Registrasi berhasil
     showDialog(
       context: context,
@@ -39,7 +40,7 @@ Future<void> loginUser(
             TextButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => HomePage(data: data)));
+                    MaterialPageRoute(builder: (_) => HomePage(data: id)));
               },
               child: Text('Close'),
             ),

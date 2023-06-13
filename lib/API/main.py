@@ -3,6 +3,7 @@ from typing import Union
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from flask import jsonify
 app = FastAPI()
 
 app.add_middleware(
@@ -202,6 +203,20 @@ def get_latest_dompet():
         con.close()
     return row[0]
 
+@app.get("/get_id_investor/{email}")
+def get_id(email:str):
+    try:
+        DB_NAME = "tubesProvis.db"
+        con = sqlite3.connect(DB_NAME)
+        cur = con.cursor()
+        cur.execute("SELECT id_investor FROM investor WHERE email = {}".format(email))
+        row = cur.fetchone()
+    except:
+        return ({"status":"terjadi errors"})   
+    finally:   
+        con.close()
+    return row[0]
+
 class Investor(BaseModel):
    email : str
    password : str
@@ -248,7 +263,7 @@ def login_investor(login_data: LoginData):
     
     if result:
         # Login berhasil
-        return {"message": "Login successful"}
+        return {"id": "{}".format(result[0])}
     else:
         # Login gagal, lempar HTTPException dengan status code 401 Unauthorized
         raise HTTPException(status_code=401, detail="Invalid email or password")
@@ -349,36 +364,30 @@ def get_dompet(id_dompet):
     con.close()
    return {"data":recs}
 
-@app.get("/get_akun/{id_akun}")
-def get_akun(id_akun):
-   try:
-    DB_NAME = "tubesProvis.db"
-    con = sqlite3.connect(DB_NAME)
-    cur = con.cursor()
-    recs = []
-    for row in cur.execute("select * from akun JOIN jenis_akun ON akun.id_jenis_akun = jenis_akun.id_jenis_akun WHERE id_akun = {}".format(id_akun)):
-        recs.append(row)
-   except:
-    return ({"status":"terjadi error"})   
-   finally:    
-    con.close()
-   return {"data":recs}
-
-
 @app.get("/get_investor/{id_investor}")
 def get_investor(id_investor):
    try:
     DB_NAME = "tubesProvis.db"
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
-    recs = []
-    for row in cur.execute("select * from investor JOIN akun ON investor.id_akun = akun.id_akun JOIN dompet ON investor.id_dompet = dompet.id_dompet WHERE id_investor = {}".format(id_investor)):
-        recs.append(row)
+    investor = {}
+    for row in cur.execute("select * from investor JOIN dompet ON investor.id_dompet = dompet.id_dompet WHERE id_investor = {}".format(id_investor)):
+        investor_data = {
+                'id_akun': row[0],
+                'email' : row[2],
+                'name': row[4],
+                'tanggal_lahir' : row[5],
+                'alamat' : row[6],
+                'phone' : row[7],
+                'id_dompet' : row[8],
+                'saldo' : row[9], 
+            }
+        investor = investor_data
    except:
     return ({"status":"terjadi error"})   
    finally:    
     con.close()
-   return {"data":recs}
+    return ({"data": investor})
 
 
 @app.get("/get_peminjam/{id_peminjam}")
