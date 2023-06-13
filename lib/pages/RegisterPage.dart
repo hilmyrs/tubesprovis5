@@ -2,12 +2,79 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:tubes/pages/LandingPage.dart';
 import 'package:tubes/pages/LoginPage.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
+}
+
+Future<void> registerUser(
+    String email,
+    String password,
+    String name,
+    String phone,
+    String address,
+    String birthdate,
+    BuildContext context) async {
+  var url = Uri.parse('http://127.0.0.1:8000/register_investor');
+  var data = {
+    "email": email,
+    "password": password,
+    "nama_investor": name,
+    "tanggal_lahir": birthdate,
+    "alamat": address,
+    "no_handphone": phone
+  };
+  var response = await http.post(
+    url,
+    body: jsonEncode(data),
+    headers: {'Content-Type': 'application/json'},
+  );
+
+  if (response.statusCode == 200) {
+    // Registrasi berhasil
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Success'),
+          content: Text('Anda telah berhasil Registrasi !'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => LoginPage()));
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  } else {
+    // Registrasi gagal
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Gagal'),
+          content: Text('Failed to register. Please try again.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
 class _RegisterPageState extends State<RegisterPage> {
@@ -18,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _address =
       TextEditingController(text: "Gegerkalong, Bandung");
   TextEditingController _name = TextEditingController(text: "Park Chanyeol");
-  TextEditingController password = TextEditingController(text: "abcdef123456");
+  TextEditingController _password = TextEditingController(text: "abcdef123456");
   String _roles = "Investor";
   List<DropdownMenuItem<String>> roles = [
     const DropdownMenuItem<String>(
@@ -35,6 +102,20 @@ class _RegisterPageState extends State<RegisterPage> {
   void initState() {
     dateinput.text = ""; //set the initial value of text field
     super.initState();
+  }
+
+  void _register() {
+    String email = _email.text;
+    String password = _password.text;
+    String name = _name.text;
+    String birthdate = _phone.text;
+    String phone = _phone.text;
+    String address = _address.text;
+    String roles = _roles;
+
+    // Panggil fungsi registerUser untuk mengirim permintaan ke API FastAPI
+
+    registerUser(email, password, name, phone, address, birthdate, context);
   }
 
   @override
@@ -200,7 +281,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     TextField(
                       obscureText: true,
-                      controller: password,
+                      controller: _password,
                       cursorColor: Colors.black,
                       style: TextStyle(
                           fontSize: 17,
@@ -487,11 +568,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginPage(),
-                  ));
+              _register();
             },
             child: Container(
               padding: EdgeInsets.all(16),

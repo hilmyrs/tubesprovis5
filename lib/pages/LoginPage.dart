@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tubes/pages/Home.dart';
 import 'package:tubes/pages/MenuFooter.dart';
 import 'package:tubes/pages/RegisterPage.dart';
 import 'package:tubes/pages/LandingPage.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,10 +13,74 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
+Future<void> loginUser(
+    String email, String password, BuildContext context) async {
+  var url = Uri.parse('http://127.0.0.1:8000/login_investor');
+  var data = {
+    "email": email,
+    "password": password,
+  };
+  var response = await http.post(
+    url,
+    body: jsonEncode(data),
+    headers: {'Content-Type': 'application/json'},
+  );
+
+  if (response.statusCode == 200) {
+    String data = "Rafi";
+    // Registrasi berhasil
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Success'),
+          content: Text('Anda telah berhasil Login !'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => HomePage(data: data)));
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  } else {
+    // Registrasi gagal
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Gagal Login !'),
+          content: Text('Periksa Kembali Username dan Password anda'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}
+
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _email =
-      TextEditingController(text: "Username@gmail.com");
-  TextEditingController password = TextEditingController(text: "abcdef123456");
+  TextEditingController _email = TextEditingController(text: "");
+  TextEditingController _password = TextEditingController(text: "");
+
+  void _loginUser() {
+    String email = _email.text;
+    String password = _password.text;
+
+    // Panggil fungsi registerUser untuk mengirim permintaan ke API FastAPI
+
+    loginUser(email, password, context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextField(
                       obscureText: true,
-                      controller: password,
+                      controller: _password,
                       cursorColor: Colors.black,
                       style: TextStyle(
                           fontSize: 17,
@@ -173,11 +240,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ));
+              _loginUser();
             },
             child: Container(
               padding: EdgeInsets.all(16),

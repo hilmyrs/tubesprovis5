@@ -10,24 +10,30 @@ import 'Account.dart';
 import 'myInvest.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final String data;
+  const HomePage({Key? key, required this.data}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  //index 2 untuk menunjukkan home (index mulai dari 0)
   int pageIndex = 2;
+  late String a;
+  late List<Widget> pages;
 
-  List<Widget> pages = [
-    //masih placeholder
-    Marketplace(),
-    MyInvest(),
-    Home(),
-    CobaWallet(),
-    Account(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    a = widget.data;
+    pages = [
+      Marketplace(),
+      MyInvest(),
+      Home(data: a),
+      CobaWallet(),
+      Account(),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,9 @@ import 'Withdraw.dart';
 import 'Topup.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final String data;
+
+  Home({required this.data});
 
   @override
   State<Home> createState() => _HomeState();
@@ -29,14 +31,14 @@ class _HomeState extends State<Home> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Halo',
+                          'Hai',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                           ),
                         ),
                         Text(
-                          'Selamat Datang [Investor]',
+                          'Selamat Datang ${widget.data}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 13,
