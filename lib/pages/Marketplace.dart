@@ -92,6 +92,8 @@ class _MarketplaceState extends State<Marketplace> {
     'Rp 1.000.000.000',
     'Rp 1.000.000.000 <'
   ];
+  String imageUrl =
+      'https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60';
   String penggunaAplikasi = 'Pengguna Aplikasi';
   String namaUsaha = 'Nama Usaha';
   String lokasi = 'Lokasi';
@@ -420,9 +422,7 @@ class _MarketplaceState extends State<Marketplace> {
                     children: [
                       CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage(
-                          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                        ),
+                        backgroundImage: NetworkImage(imageUrl),
                       ),
                       SizedBox(
                         width: 30,
@@ -635,25 +635,25 @@ class _MarketplaceState extends State<Marketplace> {
           );
         },
       ),
-      floatingActionButton: Stack(
-        children: [
-          Positioned(
-            bottom: 5,
-            right: 0,
-            child: Container(
-              width: 44,
-              height: 44,
-              child: FloatingActionButton(
-                onPressed: () {
-                  // jika ditap
-                },
-                backgroundColor: Color.fromARGB(255, 64, 197, 177),
-                child: const Icon(Icons.headset_mic),
-              ),
-            ),
-          )
-        ],
-      ),
+      // floatingActionButton: Stack(
+      //   children: [
+      //     Positioned(
+      //       bottom: 5,
+      //       right: 0,
+      //       child: Container(
+      //         width: 44,
+      //         height: 44,
+      //         child: FloatingActionButton(
+      //           onPressed: () {
+      //             // jika ditap
+      //           },
+      //           backgroundColor: Color.fromARGB(255, 64, 197, 177),
+      //           child: const Icon(Icons.headset_mic),
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // ),
     );
   }
 }
