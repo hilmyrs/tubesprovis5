@@ -92,10 +92,44 @@ class _MarketplaceState extends State<Marketplace> {
     'Rp 1.000.000.000',
     'Rp 1.000.000.000 <'
   ];
+  String penggunaAplikasi = 'Pengguna Aplikasi';
+  String namaUsaha = 'Nama Usaha';
+  String lokasi = 'Lokasi';
+  String deskripsi =
+      'Lorem ipsum dolor sit amet, consecteturdipiscing elit. Curabitur quis velit iaculis sapien hendrerit pellentesque id ac diam. Praesent at enim faucibus, pellentesque elit vel, congue ipsum. Lorem ipsum dolor sit amet, consecteturdipiscing elit. Curabitur quis velit iaculis sapien hendrerit pellentesque id ac diam. Praesent at enim faucibus, pellentesque elit vel, congue ipsum.';
+  String plafon = 'Rp500.000';
+  String bagiHasil = '10%';
+  String tenor = '12 bulan';
+  double targetPendanaan = 1000000; // Target pendanaan
+  double danaTerkumpul = 500000; // Jumlah dana yang terkumpul
+  DateTime targetDate = DateTime(2023, 6, 28); // Tanggal target
+
+  String getProgressPercentage() {
+    // Buat persentase proses line
+    double progressPercentage = danaTerkumpul / targetPendanaan;
+    int percentage = (progressPercentage * 100).round();
+
+    return '$percentage%';
+  }
+
+  String getRemainingDays() {
+    // Sisa hari
+    DateTime currentDate = DateTime.now();
+    int remainingDays = targetDate.difference(currentDate).inDays;
+
+    if (remainingDays > 1) {
+      return '$remainingDays hari lagi';
+    } else if (remainingDays == 1) {
+      return '1 hari lagi';
+    } else {
+      return 'Hari ini';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    double progressPercentage = danaTerkumpul / targetPendanaan;
     return Scaffold(
       backgroundColor: Color.fromRGBO(142, 212, 178, 1),
       appBar: AppBar(
@@ -398,7 +432,7 @@ class _MarketplaceState extends State<Marketplace> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '[Pengguna Aplikasi]',
+                              penggunaAplikasi,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
@@ -408,7 +442,7 @@ class _MarketplaceState extends State<Marketplace> {
                               height: 8,
                             ),
                             Text(
-                              '[Nama Usaha]',
+                              namaUsaha,
                               style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 15,
@@ -418,7 +452,7 @@ class _MarketplaceState extends State<Marketplace> {
                               height: 4,
                             ),
                             Text(
-                              '[Lokasi]',
+                              lokasi,
                               style: TextStyle(
                                 fontWeight: FontWeight.normal,
                                 fontSize: 14,
@@ -428,10 +462,12 @@ class _MarketplaceState extends State<Marketplace> {
                             SizedBox(
                               height: 4,
                             ),
-                            Expanded(
+                            Container(
+                              height:
+                                  130, // Atur sesuai dengan ukuran yang diinginkan
                               child: SingleChildScrollView(
                                 child: Text(
-                                  'Lorem ipsum dolor sit amet, consecteturdipiscing elit. Curabitur quis velit iaculis sapien hendrerit pellentesque id ac diam. Praesent at enim faucibus, pellentesque elit vel, congue ipsum.',
+                                  deskripsi,
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 14,
@@ -526,7 +562,7 @@ class _MarketplaceState extends State<Marketplace> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Rp500.000',
+                                  plafon,
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 14,
@@ -534,7 +570,7 @@ class _MarketplaceState extends State<Marketplace> {
                                 ),
                                 SizedBox(width: 70),
                                 Text(
-                                  '10%',
+                                  bagiHasil,
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 14,
@@ -542,7 +578,7 @@ class _MarketplaceState extends State<Marketplace> {
                                 ),
                                 SizedBox(width: 70),
                                 Text(
-                                  '12 Bulan',
+                                  tenor,
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 14,
@@ -570,12 +606,12 @@ class _MarketplaceState extends State<Marketplace> {
                           ),
                           Expanded(
                             child: LinearProgressIndicator(
-                              value: 0.5, // Ubah persentase sesuai kebutuhan
-                              backgroundColor: Colors
-                                  .grey[200], // Warna latar belakang garis
+                              value:
+                                  progressPercentage, // Ubah persentase sesuai kebutuhan
+                              backgroundColor: Color.fromARGB(255, 230, 230,
+                                  230), // Warna latar belakang garis
                               valueColor: AlwaysStoppedAnimation<Color>(
-                                Color.fromARGB(
-                                    255, 76, 147, 214), // Warna garis
+                                Color.fromARGB(255, 0, 197, 180), // Warna garis
                               ),
                             ),
                           ),
@@ -583,7 +619,7 @@ class _MarketplaceState extends State<Marketplace> {
                             width: 10,
                           ),
                           Text(
-                            '1 hari lagi',
+                            getRemainingDays(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 14,
