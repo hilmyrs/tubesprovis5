@@ -34,9 +34,9 @@
       "description": "Contextually relevant info for any page",
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_chatB_active_dark.png/1.1.11/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_chatB_hc.png/1.1.11/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_chatB_active_light.png/1.1.11/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_chatB_active_dark.png/1.1.13/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_chatB_hc.png/1.1.13/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_chatB_active_light.png/1.1.13/asset"
          }
       },
       "id": "cd4688a9-e888-48ea-ad81-76193d56b1be",
@@ -52,10 +52,31 @@
                "max_show_count": 3,
                "min_sec_between_auto_show": 86400,
                "show_count_basis": "signal",
-               "signal_name": "IsTwitchStreamPage",
+               "signal_name": "IsTwitchNonStreamPage",
+               "signal_threshold": 0.5
+            },
+            "text": "__MSG_gaming_underside_notification_nonstream_text__",
+            "type": "triggering_config"
+         }, {
+            "config": {
+               "max_show_count": 3,
+               "min_sec_between_auto_show": 86400,
+               "show_count_basis": "signal",
+               "signal_name": "IsTwitchSubPage",
                "signal_threshold": 0.5
             },
             "text": "__MSG_gaming_underside_notification_text__",
+            "type": "triggering_config"
+         } ],
+         "triggers|flight:msUndersideMsnArticleNotification": [ {
+            "config": {
+               "max_show_count": 3,
+               "min_sec_between_auto_show": 604800,
+               "show_count_basis": "signal",
+               "signal_name": "IsMsnArticleUrlFromNtpP1P2",
+               "signal_threshold": 0.5
+            },
+            "text": "__MSG_msn_article_underside_notification_text__",
             "type": "triggering_config"
          } ]
       },
@@ -63,7 +84,7 @@
       "target": {
          "command": "discover_chat"
       },
-      "version": "1.1.11"
+      "version": "1.1.13"
    }, {
       "auto_show": {
          "enabled": true,
@@ -81,9 +102,9 @@
       "flights": [ "msEdgeNurturingHub" ],
       "icon": {
          "raster_icon": {
-            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_action_center_maximal_dark.png/1.1.19/asset",
-            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_action_center_hc.png/1.1.19/asset",
-            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_action_center_maximal_light.png/1.1.19/asset"
+            "dark_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_action_center_maximal_dark.png/1.1.20/asset",
+            "high_contrast": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_action_center_hc.png/1.1.20/asset",
+            "light_mode": "https://edgeassetservice.azureedge.net/assets/edge_hub_apps_action_center_maximal_light.png/1.1.20/asset"
          }
       },
       "id": "d304175e-bbd4-4b66-8839-9627e56f391f",
@@ -98,12 +119,12 @@
       "notifications": {
          "enabled": true
       },
-      "on_by_default|device:managed|flight:msEdgeNurturingHubOnByDefault": false,
-      "on_by_default|flight:msEdgeNurturingHubOnByDefault": true,
+      "on_by_default": true,
+      "on_by_default|device:managed": false,
       "target": {
          "url": "edge://rewards/?sharedHeader=1"
       },
-      "version": "1.1.19"
+      "version": "1.1.20"
    }, {
       "capabilities": {
          "deprecated_hide_header": true

@@ -19,61 +19,118 @@ Future<void> registerUser(
     String phone,
     String address,
     String birthdate,
+    String roles,
     BuildContext context) async {
-  var url = Uri.parse('http://127.0.0.1:8000/register_investor');
-  var data = {
-    "email": email,
-    "password": password,
-    "nama_investor": name,
-    "tanggal_lahir": birthdate,
-    "alamat": address,
-    "no_handphone": phone
-  };
-  var response = await http.post(
-    url,
-    body: jsonEncode(data),
-    headers: {'Content-Type': 'application/json'},
-  );
-
-  if (response.statusCode == 200) {
-    // Registrasi berhasil
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Success'),
-          content: Text('Anda telah berhasil Registrasi !'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => LoginPage()));
-              },
-              child: Text('Close'),
-            ),
-          ],
-        );
-      },
+  if (roles == 'Investor') {
+    var url = Uri.parse('http://127.0.0.1:8000/register_investor');
+    var data = {
+      "email": email,
+      "password": password,
+      "nama_investor": name,
+      "tanggal_lahir": birthdate,
+      "alamat": address,
+      "no_handphone": phone
+    };
+    var response = await http.post(
+      url,
+      body: jsonEncode(data),
+      headers: {'Content-Type': 'application/json'},
     );
+    if (response.statusCode == 200) {
+      // Registrasi berhasil
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Success'),
+            content: Text('Anda telah berhasil Registrasi !'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => LoginPage()));
+                },
+                child: Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      // Registrasi gagal
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Gagal'),
+            content: Text('Failed to register. Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   } else {
-    // Registrasi gagal
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Gagal'),
-          content: Text('Failed to register. Please try again.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
+    var url = Uri.parse('http://127.0.0.1:8000/register_borrower');
+    var data = {
+      "email": email,
+      "password": password,
+      "nama_peminjam": name,
+      "tanggal_lahir": birthdate,
+      "lokasi_peminjam": address,
+      "no_handphone": phone
+    };
+    var response = await http.post(
+      url,
+      body: jsonEncode(data),
+      headers: {'Content-Type': 'application/json'},
     );
+    if (response.statusCode == 200) {
+      // Registrasi berhasil
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Success'),
+            content: Text('Anda telah berhasil Registrasi !'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => LoginPage()));
+                },
+                child: Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      // Registrasi gagal
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Gagal'),
+            content: Text('Failed to register. Please try again.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
 
@@ -113,7 +170,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
     // Panggil fungsi registerUser untuk mengirim permintaan ke API FastAPI
 
-    registerUser(email, password, name, phone, address, birthdate, context);
+    registerUser(
+        email, password, name, phone, address, birthdate, roles, context);
   }
 
   @override

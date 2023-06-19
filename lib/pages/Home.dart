@@ -10,46 +10,64 @@ import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
   final String data;
+  final String data_dompet;
+  final String type;
 
-  Home({required this.data});
+  Home({required this.data, required this.type, required this.data_dompet});
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  late Future<Map<String, dynamic>> investorData;
+  late Future<Map<String, dynamic>> userData;
 
-  Future<Map<String, dynamic>> getUserData(String id) async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:8000/get_investor/$id'));
-
-    if (response.statusCode == 200) {
-      final responseData = jsonDecode(response.body);
-      return responseData;
+  Future<Map<String, dynamic>> getUserData(String id, String type) async {
+    if (type == 'investor') {
+      final response =
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_investor/$id'));
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        throw Exception('Failed to fetch investor data');
+      }
     } else {
-      throw Exception('Failed to fetch investor data');
+      final response =
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_borrower/$id'));
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        throw Exception('Failed to fetch borrower data');
+      }
     }
   }
 
   @override
   void initState() {
     super.initState();
-    investorData = getUserData(widget.data);
+    refreshUserData();
+  }
+
+  void refreshUserData() {
+    setState(() {
+      userData = getUserData(widget.data, widget.type);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final numberFormat = NumberFormat('#,##0.00', 'en_US');
     return FutureBuilder<Map<String, dynamic>>(
-      future: investorData,
+      future: userData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          final investor = snapshot.data;
+          final user = snapshot.data;
           var size = MediaQuery.of(context).size;
           return SafeArea(
             child: SingleChildScrollView(
@@ -71,7 +89,7 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               Text(
-                                'Selamat Datang ${investor!["data"]["name"]}',
+                                'Selamat Datang ${user!["data"]["name"]}',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 13,
@@ -85,8 +103,10 @@ class _HomeState extends State<Home> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          Account(data: widget.data)));
+                                      builder: (context) => Account(
+                                            data: widget.data,
+                                            type: widget.type,
+                                          )));
                             },
                             child: const CircleAvatar(
                               radius: 30,
@@ -331,7 +351,7 @@ class _HomeState extends State<Home> {
                                                       Text(
                                                         "Rp. " +
                                                             numberFormat.format(
-                                                                investor["data"]
+                                                                user["data"]
                                                                     ["saldo"]),
                                                         style: TextStyle(
                                                             fontWeight:
@@ -365,8 +385,16 @@ class _HomeState extends State<Home> {
                                                       Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  const Topup()));
+                                                              builder:
+                                                                  (context) =>
+                                                                      Topup(
+                                                                        data: widget
+                                                                            .data,
+                                                                        data_dompet:
+                                                                            widget.data_dompet,
+                                                                        type: widget
+                                                                            .type,
+                                                                      )));
                                                     },
                                                     child: const Icon(
                                                       Icons.add_circle_outline,
@@ -396,8 +424,16 @@ class _HomeState extends State<Home> {
                                                       Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
-                                                              builder: (context) =>
-                                                                  const Withdraw()));
+                                                              builder:
+                                                                  (context) =>
+                                                                      Withdraw(
+                                                                        data: widget
+                                                                            .data,
+                                                                        data_dompet:
+                                                                            widget.data_dompet,
+                                                                        type: widget
+                                                                            .type,
+                                                                      )));
                                                     },
                                                     child: const Icon(
                                                       Icons.add_circle_outline,

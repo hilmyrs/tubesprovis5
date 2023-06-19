@@ -4,42 +4,55 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'EditProfile.dart';
+import 'package:tubes/pages/LandingPage.dart';
 
 class Account extends StatefulWidget {
   final String data;
+  final String type;
 
-  Account({required this.data});
+  Account({required this.data, required this.type});
 
   @override
   _AccountState createState() => _AccountState();
 }
 
 class _AccountState extends State<Account> {
-  late Future<Map<String, dynamic>> investorData;
+  late Future<Map<String, dynamic>> userData;
 
-  Future<Map<String, dynamic>> getUserData(String id) async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:8000/get_investor/$id'));
-
-    if (response.statusCode == 200) {
-      final responseData = jsonDecode(response.body);
-      return responseData;
+  Future<Map<String, dynamic>> getUserData(String id, String type) async {
+    if (type == 'investor') {
+      final response =
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_investor/$id'));
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        throw Exception('Failed to fetch investor data');
+      }
     } else {
-      throw Exception('Failed to fetch investor data');
+      final response =
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_borrower/$id'));
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        print("borrower");
+        return responseData;
+      } else {
+        throw Exception('Failed to fetch borrower data');
+      }
     }
   }
 
   @override
   void initState() {
     super.initState();
-    investorData = getUserData(widget.data);
+    userData = getUserData(widget.data, widget.type);
   }
 
   @override
   Widget build(BuildContext context) {
     final numberFormat = NumberFormat('#,##0.00', 'en_US');
     return FutureBuilder<Map<String, dynamic>>(
-      future: investorData,
+      future: userData,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -361,7 +374,8 @@ class _AccountState extends State<Account> {
                       alignment: Alignment.center,
                       child: TextButton(
                         onPressed: () {
-                          Navigator.of(context).pop();
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => LandingPage()));
                         },
                         child: Text(
                           'Logout',

@@ -1,22 +1,15 @@
-2023/06/13-12:42:08.561 548c Reusing MANIFEST C:\Users\VAIO\AppData\Local\Temp\flutter_tools.bd2a002\flutter_tools_chrome_device.8bd6f81c\Default\Local Storage\leveldb/MANIFEST-000001
-2023/06/13-12:42:08.564 548c Recovering log #3
-2023/06/13-12:42:08.565 548c Recovering log #39
-2023/06/13-12:42:08.785 548c Level-0 table #4: started
-2023/06/13-12:42:09.434 548c Level-0 table #4: 40743 bytes OK
-2023/06/13-12:42:09.504 548c Recovering log #58
-2023/06/13-12:42:09.752 548c Level-0 table #40: started
-2023/06/13-12:42:10.083 548c Level-0 table #40: 45540 bytes OK
-2023/06/13-12:42:10.087 548c Recovering log #61
-2023/06/13-12:42:10.173 548c Reusing old log C:\Users\VAIO\AppData\Local\Temp\flutter_tools.bd2a002\flutter_tools_chrome_device.8bd6f81c\Default\Local Storage\leveldb/000061.log 
-2023/06/13-12:42:10.676 548c Delete type=0 #3
-2023/06/13-12:42:10.676 548c Delete type=2 #5
-2023/06/13-12:42:10.676 548c Delete type=2 #34
-2023/06/13-12:42:10.676 548c Delete type=2 #36
-2023/06/13-12:42:10.676 548c Delete type=2 #38
-2023/06/13-12:42:10.676 548c Delete type=0 #39
-2023/06/13-12:42:10.676 548c Delete type=2 #53
-2023/06/13-12:42:10.676 548c Delete type=2 #55
-2023/06/13-12:42:10.676 548c Delete type=2 #57
-2023/06/13-12:42:10.676 548c Delete type=0 #58
-2023/06/13-12:42:10.676 548c Delete type=2 #59
-2023/06/13-12:42:10.676 548c Delete type=2 #63
+2023/06/20-03:40:48.096 31e8 Reusing MANIFEST C:\Users\VAIO\AppData\Local\Temp\flutter_tools.96da53ca\flutter_tools_chrome_device.ac96c8b1\Default\Local Storage\leveldb/MANIFEST-000001
+2023/06/20-03:40:48.099 31e8 Recovering log #61
+2023/06/20-03:40:48.103 31e8 Reusing old log C:\Users\VAIO\AppData\Local\Temp\flutter_tools.96da53ca\flutter_tools_chrome_device.ac96c8b1\Default\Local Storage\leveldb/000061.log 
+2023/06/20-03:40:48.105 31e8 Delete type=0 #3
+2023/06/20-03:40:48.105 31e8 Delete type=2 #5
+2023/06/20-03:40:48.105 31e8 Delete type=2 #34
+2023/06/20-03:40:48.105 31e8 Delete type=2 #36
+2023/06/20-03:40:48.105 31e8 Delete type=2 #38
+2023/06/20-03:40:48.105 31e8 Delete type=0 #39
+2023/06/20-03:40:48.105 31e8 Delete type=2 #53
+2023/06/20-03:40:48.105 31e8 Delete type=2 #55
+2023/06/20-03:40:48.165 31e8 Delete type=2 #57
+2023/06/20-03:40:48.165 31e8 Delete type=0 #58
+2023/06/20-03:40:48.165 31e8 Delete type=2 #59
+2023/06/20-03:40:48.165 31e8 Delete type=2 #63

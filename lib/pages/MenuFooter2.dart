@@ -9,8 +9,14 @@ import 'Peminjaman.dart';
 
 class HomePage2 extends StatefulWidget {
   final String data;
-  const HomePage2({Key? key, required this.data}) : super(key: key);
-
+  final String type;
+  final String data_dompet;
+  const HomePage2(
+      {Key? key,
+      required this.data,
+      required this.type,
+      required this.data_dompet})
+      : super(key: key);
   @override
   State<HomePage2> createState() => _HomePage2State();
 }
@@ -27,12 +33,19 @@ class _HomePage2State extends State<HomePage2> {
     pages = [
       Explore(),
       Peminjaman(),
-      Home(data: a),
+      Home(
+        data: widget.data,
+        data_dompet: widget.data_dompet,
+        type: widget.type,
+      ),
       CobaWallet(
-        data: a,
+        data: widget.data,
+        data_dompet: widget.data_dompet,
+        type: widget.type,
       ),
       Account(
-        data: a,
+        data: widget.data,
+        type: widget.type,
       ),
     ];
   }

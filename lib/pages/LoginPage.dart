@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tubes/pages/Home.dart';
 import 'package:tubes/pages/MenuFooter.dart';
+import 'package:tubes/pages/MenuFooter2.dart';
 import 'package:tubes/pages/RegisterPage.dart';
 import 'package:tubes/pages/LandingPage.dart';
 import 'package:http/http.dart' as http;
@@ -29,6 +30,7 @@ Future<void> loginUser(
   if (response.statusCode == 200) {
     final responseData = jsonDecode(response.body);
     String id = responseData['id'];
+    String id_dompet = responseData['id_dompet'];
     // Registrasi berhasil
     showDialog(
       context: context,
@@ -39,8 +41,14 @@ Future<void> loginUser(
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => HomePage(data: id)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => HomePage(
+                              data: id,
+                              data_dompet: id_dompet,
+                              type: 'investor',
+                            )));
               },
               child: Text('Close'),
             ),
@@ -49,24 +57,66 @@ Future<void> loginUser(
       },
     );
   } else {
-    // Registrasi gagal
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Gagal Login !'),
-          content: Text('Periksa Kembali Username dan Password anda'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
+    var url = Uri.parse('http://127.0.0.1:8000/login_borrower');
+    var data = {
+      "email": email,
+      "password": password,
+    };
+    var response = await http.post(
+      url,
+      body: jsonEncode(data),
+      headers: {'Content-Type': 'application/json'},
     );
+
+    if (response.statusCode == 200) {
+      final responseData = jsonDecode(response.body);
+      String id = responseData['id'];
+      String id_dompet = responseData['id_dompet'];
+      print(id_dompet);
+      // Registrasi berhasil
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Success'),
+            content: Text('Anda telah berhasil Login !'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => HomePage2(
+                                data: id,
+                                data_dompet: id_dompet,
+                                type: 'borrower',
+                              )));
+                },
+                child: Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Gagal Login !'),
+            content: Text('Periksa Kembali Username dan Password anda'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
 

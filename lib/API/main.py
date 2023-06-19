@@ -4,6 +4,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from flask import jsonify
+from flask import request
+import json
 app = FastAPI()
 
 app.add_middleware(
@@ -217,6 +219,73 @@ def get_id(email:str):
         con.close()
     return row[0]
 
+   
+class AddTransaction(BaseModel):
+   id_jenis : int
+   id_dompet : int
+   nama_transaksi : str
+   jml_transaksi : int
+   tanggal : str
+   keterangan : str
+   
+@app.post("/add_transaction")
+def add_transaction(i : AddTransaction):
+    try:
+        DB_NAME = "tubesProvis.db"
+        con = sqlite3.connect(DB_NAME)
+        cur1 = con.cursor()
+        cur1.execute("""insert into history_transaksi (id_jenis_transaksi, id_dompet, nama_transaksi, jumlah_transaksi, tanggal, keterangan) 
+                    VALUES ("{}","{}","{}","{}","{}","{}")""".format(i.id_jenis, i.id_dompet, i.nama_transaksi, i.jml_transaksi, i.tanggal, i.keterangan))
+        con.commit()
+    except:
+        return ({"status":"terjadi error"})   
+    finally:   
+        con.close()
+        return ({"status":"sukses bro"})  
+   
+class UpdateSaldo(BaseModel):
+   id_dompet : int
+   update_saldo : int
+   
+@app.put("/update_saldo/")
+def update_saldo(i : UpdateSaldo):
+    try:
+        DB_NAME = "tubesProvis.db"
+        con = sqlite3.connect(DB_NAME)
+        cur1 = con.cursor()
+        cur1.execute("""UPDATE dompet set total_saldo = {} WHERE id_dompet = {}""".format(i.update_saldo, i.id_dompet))
+        con.commit()
+    except:
+        return ({"status":"terjadi error"})   
+    finally:   
+        con.close()
+        return ({"status":"sukses bro"}) 
+    
+class Borrower(BaseModel):
+    email : str
+    password : str
+    nama_peminjam : str
+    tanggal_lahir : str
+    lokasi_peminjam : str
+    no_handphone : str
+   
+@app.post("/register_borrower")
+def register_borrower(i: Borrower):
+    add_dompet()
+    id_dompet = get_latest_dompet()
+    try:
+        DB_NAME = "tubesProvis.db"
+        con = sqlite3.connect(DB_NAME)
+        cur1 = con.cursor()
+        cur1.execute("""insert into peminjam (id_dompet, email, password, nama_peminjam, tanggal_lahir, lokasi_peminjam, no_handphone) 
+                    VALUES ("{}","{}","{}","{}","{}","{}","{}")""".format(id_dompet,i.email, i.password, i.nama_peminjam, i.tanggal_lahir, i.lokasi_peminjam, i.no_handphone))
+        con.commit()
+    except:
+        return ({"status":"terjadi error"})   
+    finally:   
+        con.close()
+        return ({"status":"sukses bro"})   
+    
 class Investor(BaseModel):
    email : str
    password : str
@@ -245,7 +314,7 @@ def register_investor(i: Investor):
 class LoginData(BaseModel):
    email : str
    password : str
-   
+
 @app.post("/login_investor")
 def login_investor(login_data: LoginData):
     # Proses validasi login
@@ -263,7 +332,31 @@ def login_investor(login_data: LoginData):
     
     if result:
         # Login berhasil
-        return {"id": "{}".format(result[0])}
+        return {"id": "{}".format(result[0]),
+                "id_dompet": "{}".format(result[1])}
+    else:
+        # Login gagal, lempar HTTPException dengan status code 401 Unauthorized
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+@app.post("/login_borrower")
+def login_borrower(login_data: LoginData):
+    # Proses validasi login
+    email = login_data.email
+    password = login_data.password
+
+    # Koneksi ke database SQLite
+    conn = sqlite3.connect('tubesProvis.db')
+    cursor = conn.cursor()
+
+    # Eksekusi query untuk validasi login
+    query = "SELECT * FROM peminjam WHERE email = ? AND password = ?"
+    cursor.execute(query, (email, password))
+    result = cursor.fetchone()
+    
+    if result:
+        # Login berhasil
+        return {"id": "{}".format(result[0]),
+                "id_dompet": "{}".format(result[1])}
     else:
         # Login gagal, lempar HTTPException dengan status code 401 Unauthorized
         raise HTTPException(status_code=401, detail="Invalid email or password")
@@ -319,36 +412,51 @@ def tambah_pinjaman(i: Pinjaman):
         con.close()
     return {"status":"ok berhasil insert satu record"}
 
-@app.get("/get_jenis_akun/")
-def get_jenis_akun():
+@app.get("/get_id_history/{id_dompet}")
+def get_id__history(id_dompet):
    try:
     DB_NAME = "tubesProvis.db"
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
-    recs = []
-    for row in cur.execute("select * from jenis_akun"):
-        recs.append(row)
+    i = 0
+    data_history = []
+    for row in cur.execute("select * from history_transaksi WHERE id_dompet = {}".format(id_dompet)):
+        history_data = {
+                'id_jenis': row[1],
+                'nama' : row[3],
+                'jumlah': row[4],
+                'tanggal' : row[5],
+                'keterangan' : row[6],
+            }
+        data_history.append(history_data)
    except:
     return ({"status":"terjadi error"})   
    finally:    
     con.close()
-   return {"data":recs}
+    return ({"data": data_history})
 
-@app.get("/get_jenis_transaksi/")
-def get_jenis_transaksi():
+@app.get("/get_detail_history/{id_history}")
+def get_detail_history(id_history):
    try:
     DB_NAME = "tubesProvis.db"
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
-    recs = []
-    for row in cur.execute("select * from jenis_transaksi"):
-        recs.append(row)
+    history = {}
+    for row in cur.execute("select * from history_transaksi WHERE id_history = {}".format(id_history)):
+        history_data = {
+                'id_jenis': row[1],
+                'nama' : row[3],
+                'jumlah': row[4],
+                'tanggal' : row[5],
+                'keterangan' : row[6],
+            }
+        history = history_data
    except:
     return ({"status":"terjadi error"})   
    finally:    
     con.close()
-   return {"data":recs}
-
+    return ({"data": history})
+    
 @app.get("/get_dompet/{id_dompet}")
 def get_dompet(id_dompet):
    try:
@@ -390,20 +498,30 @@ def get_investor(id_investor):
     return ({"data": investor})
 
 
-@app.get("/get_peminjam/{id_peminjam}")
-def get_peminjam(id_peminjam):
+@app.get("/get_borrower/{id_borrower}")
+def get_investor(id_borrower):
    try:
     DB_NAME = "tubesProvis.db"
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
-    recs = []
-    for row in cur.execute("select * from peminjam JOIN akun ON peminjam.id_akun = akun.id_akun JOIN dompet ON peminjam.id_dompet = dompet.id_dompet WHERE id_peminjam = {}".format(id_peminjam)):
-        recs.append(row)
+    investor = {}
+    for row in cur.execute("select * from peminjam JOIN dompet ON peminjam.id_dompet = dompet.id_dompet WHERE id_peminjam = {}".format(id_borrower)):
+        investor_data = {
+                'id_akun': row[0],
+                'email' : row[2],
+                'name': row[4],
+                'tanggal_lahir' : row[5],
+                'alamat' : row[6],
+                'phone' : row[7],
+                'id_dompet' : row[8],
+                'saldo' : row[9], 
+            }
+        investor = investor_data
    except:
     return ({"status":"terjadi error"})   
    finally:    
     con.close()
-   return {"data":recs}
+    return ({"data": investor})
 
 @app.get("/get_pinjaman/{id_pinjaman}")
 def get_pinjaman(id_pinjaman):

@@ -11,7 +11,14 @@ import 'myInvest.dart';
 
 class HomePage extends StatefulWidget {
   final String data;
-  const HomePage({Key? key, required this.data}) : super(key: key);
+  final String data_dompet;
+  final String type;
+  const HomePage(
+      {Key? key,
+      required this.data,
+      required this.type,
+      required this.data_dompet})
+      : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,21 +26,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int pageIndex = 2;
-  late String id;
   late List<Widget> pages;
 
   @override
   void initState() {
     super.initState();
-    id = widget.data;
     pages = [
       Marketplace(),
       MyInvest(),
-      Home(data: id),
-      CobaWallet(
-        data: id,
+      Home(
+        data: widget.data,
+        data_dompet: widget.data_dompet,
+        type: widget.type,
       ),
-      Account(data: id),
+      CobaWallet(
+        data: widget.data,
+        data_dompet: widget.data_dompet,
+        type: widget.type,
+      ),
+      Account(
+        data: widget.data,
+        type: widget.type,
+      ),
     ];
   }
 
