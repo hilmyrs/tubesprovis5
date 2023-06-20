@@ -409,7 +409,7 @@ class _HomeState extends State<Home> {
                                                     child: const Icon(
                                                       Icons.add_circle_outline,
                                                       color: Colors.black,
-                                                      size: 30.0,
+                                                      size: 25.0,
                                                     ),
                                                   ),
                                                 ],
@@ -446,9 +446,9 @@ class _HomeState extends State<Home> {
                                                                       )));
                                                     },
                                                     child: const Icon(
-                                                      Icons.add_circle_outline,
+                                                      Icons.monetization_on_rounded,
                                                       color: Colors.black,
-                                                      size: 30.0,
+                                                      size: 25.0,
                                                     ),
                                                   ),
                                                 ],
