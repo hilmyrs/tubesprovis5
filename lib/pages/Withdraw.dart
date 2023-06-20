@@ -36,7 +36,6 @@ class _WithdrawState extends State<Withdraw> {
           await http.get(Uri.parse('http://127.0.0.1:8000/get_borrower/$id'));
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
-        print("borrower");
         return responseData;
       } else {
         throw Exception('Failed to fetch borrower data');
@@ -459,7 +458,6 @@ class _WithdrawState extends State<Withdraw> {
                                       user,
                                       paymentOption,
                                       selectedWallet);
-                                  print('Container di-tap');
                                 },
                                 child: Container(
                                   padding: EdgeInsets.all(16),

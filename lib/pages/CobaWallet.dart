@@ -66,7 +66,6 @@ class _CobaWalletState extends State<CobaWallet> {
         await http.get(Uri.parse('http://127.0.0.1:8000/get_id_history/$id'));
     if (hasil.statusCode == 200) {
       final jsonData = jsonDecode(hasil.body);
-      print(jsonData['data']);
       List<History> newDataList = [];
       for (var item in jsonData['data']) {
         // Membuat objek History dari item JSON

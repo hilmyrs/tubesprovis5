@@ -416,12 +416,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 1900), //DateTime.now() - not to allow to choose before today.
                             lastDate: DateTime(2025));
                         if (pickedDate != null) {
-                          print(
-                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          //pickedDate output format => 2021-03-10 00:00:00.000
                           String formattedDate =
                               DateFormat('yyyy-MM-dd').format(pickedDate);
-                          print(
-                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                          //formatted date output using intl package =>  2021-03-16
                           //you can implement different kind of Date Format here according to your requirement
 
                           setState(() {

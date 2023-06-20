@@ -280,7 +280,51 @@ def tambah_pinjaman(i: Pinjaman):
         return ({"status":"terjadi error"})   
     finally:   
         con.close()
-        return ({"status":"sukses bro"})   
+        return ({"status":"sukses bro"})
+     
+class Pendanaan(BaseModel):
+    id_pinjaman : int
+    id_investor : int
+    jumlah : int
+    keuntungan : int
+
+@app.post("/tambah_pendanaan")
+def tambah_pendanaan(i: Pendanaan):
+    try:
+        DB_NAME = "tubesProvis.db"
+        con = sqlite3.connect(DB_NAME)
+        cur1 = con.cursor()
+        cur1.execute("""insert into pendanaan (id_pinjaman, id_investor, jumlah_pendanaan, total_profit) 
+                    VALUES ("{}","{}","{}","{}")""".format(i.id_pinjaman,i.id_investor, i.jumlah, i.keuntungan))
+        con.commit()
+    except:
+        return ({"status":"terjadi error"})   
+    finally:   
+        con.close()
+        return ({"status":"sukses bro"})
+    
+class Angsuran(BaseModel):
+    id_pinjaman : int
+    id_status : int
+    jatuh_tempo : str
+    tanggal_pembayaran : str
+    jml_angsuran : int
+    jml_bagi_hasil : int
+
+@app.post("/tambah_angsuran")
+def tambah_angsuran(i: Angsuran):
+    try:
+        DB_NAME = "tubesProvis.db"
+        con = sqlite3.connect(DB_NAME)
+        cur1 = con.cursor()
+        cur1.execute("""insert into angsuran (id_pinjaman, id_status_angsuran, jatuh_tempo, tanggal_pembayaran, jumlah_angsuran, jumlah_bagi_hasil) 
+                    VALUES ("{}","{}","{}","{}","{}","{}")""".format(i.id_pinjaman,i.id_status, i.jatuh_tempo, i.tanggal_pembayaran, i.jml_angsuran, i.jml_bagi_hasil))
+        con.commit()
+    except:
+        return ({"status":"terjadi error"})   
+    finally:   
+        con.close()
+        return ({"status":"sukses bro"}) 
     
 class Borrower(BaseModel):
     email : str
@@ -289,7 +333,7 @@ class Borrower(BaseModel):
     tanggal_lahir : str
     lokasi_peminjam : str
     no_handphone : str
-   
+    
 @app.post("/register_borrower")
 def register_borrower(i: Borrower):
     add_dompet()
@@ -410,6 +454,25 @@ def tambah_peminjam(i: Peminjam):
         con.close()
     return {"status":"ok berhasil insert satu record"}
 
+@app.get("/get_asset/{id_investor}")
+def get_asset(id_investor):
+   try:
+    DB_NAME = "tubesProvis.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    asset = 0
+    profit = 0
+    for row in cur.execute("select * from pendanaan JOIN pinjaman on pendanaan.id_pinjaman = pinjaman.id_pinjaman WHERE id_investor = {} ".format(id_investor)):
+        asset += row[3]
+        profit += row[4]
+    total_aset = {'asset': asset,
+                  'profit':profit,}
+   except:
+    return ({"status":"terjadi error"})   
+   finally:    
+    con.close()
+    return ({"data": total_aset})
+
 @app.get("/get_id_history/{id_dompet}")
 def get_id__history(id_dompet):
    try:
@@ -417,7 +480,7 @@ def get_id__history(id_dompet):
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
     data_history = []
-    for row in cur.execute("select * from history_transaksi WHERE id_dompet = {}".format(id_dompet)):
+    for row in cur.execute("select * from history_transaksi WHERE id_dompet = {} ORDER BY id_history DESC".format(id_dompet)):
         history_data = {
                 'id_jenis': row[1],
                 'nama' : row[3],

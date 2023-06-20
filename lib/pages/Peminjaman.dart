@@ -51,7 +51,6 @@ class _PeminjamanState extends State<Peminjaman> {
         await http.get(Uri.parse('http://127.0.0.1:8000/get_pinjaman/$id'));
     if (hasil.statusCode == 200) {
       final jsonData = jsonDecode(hasil.body);
-      print(jsonData['data']);
       List<ModalUsaha> newDataList = [];
       for (var item in jsonData['data']) {
         // Membuat objek ModalUsaha dari item JSON

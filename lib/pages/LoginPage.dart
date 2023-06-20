@@ -72,7 +72,6 @@ Future<void> loginUser(
       final responseData = jsonDecode(response.body);
       String id = responseData['id'];
       String id_dompet = responseData['id_dompet'];
-      print(id_dompet);
       // Registrasi berhasil
       showDialog(
         context: context,
