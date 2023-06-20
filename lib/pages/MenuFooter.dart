@@ -37,7 +37,11 @@ class _HomePageState extends State<HomePage> {
         data_dompet: widget.data_dompet,
         type: widget.type,
       ),
-      MyInvest(),
+      MyInvest(
+        data: widget.data,
+        data_dompet: widget.data_dompet,
+        type: widget.type,
+      ),
       Home(
         data: widget.data,
         data_dompet: widget.data_dompet,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'myInvest.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class DetailPortofolio2 extends StatefulWidget {
   final ModalUsaha modalUsaha;
@@ -11,6 +14,7 @@ class DetailPortofolio2 extends StatefulWidget {
 }
 
 class _DetailPortofolio2State extends State<DetailPortofolio2> {
+  final numberFormat = NumberFormat('#,##0.00', 'en_US');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,8 +159,9 @@ class _DetailPortofolio2State extends State<DetailPortofolio2> {
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 child: Text(
-                                  "Total Pendanaan : " +
-                                      widget.modalUsaha.totalPendanaan,
+                                  "Total Pendanaan : Rp. " +
+                                      numberFormat.format(
+                                          widget.modalUsaha.totalPendanaan),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -166,7 +171,9 @@ class _DetailPortofolio2State extends State<DetailPortofolio2> {
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 child: Text(
-                                  "Bagi Hasil : " + widget.modalUsaha.bagiHasil,
+                                  "Bagi Hasil : " +
+                                      widget.modalUsaha.bagiHasil.toString() +
+                                      "%",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -176,7 +183,9 @@ class _DetailPortofolio2State extends State<DetailPortofolio2> {
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 child: Text(
-                                  "Lama Tenor : " + widget.modalUsaha.lamaTenor,
+                                  "Lama Tenor : " +
+                                      widget.modalUsaha.lamaTenor.toString() +
+                                      " Bulan",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -209,81 +218,6 @@ class _DetailPortofolio2State extends State<DetailPortofolio2> {
                                 ),
                               ),
                               SizedBox(height: 10),
-                              Text(
-                                "History Pembayaran : ",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 14,
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        "Tanggal",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Jumlah",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                      Text(
-                                        "Status",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text("5 April 2023"),
-                                      Text("Rp 91.966"),
-                                      Text(
-                                        "Tepat Waktu",
-                                        style: TextStyle(color: Colors.green),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text("23 Mei 2023"),
-                                      Text("Rp 101.966"),
-                                      Text(
-                                        "Tepat Waktu",
-                                        style: TextStyle(color: Colors.green),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text("6 Juni 2023 "),
-                                      Text("Rp 105.966"),
-                                      Text(
-                                        "Terlambat",
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )
                             ],
                           ),
                         ),
