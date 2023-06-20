@@ -26,13 +26,11 @@ class ModalUsaha {
   final String nama;
   final String pemilik;
   final int totalPendanaan;
-  final int danaTerkumpul;
   final int bagiHasil;
   final String status;
   final String lokasi;
   final int lamaTenor;
   final String deskripsi;
-  DateTime targetDate;
 
   ModalUsaha({
     required this.imageUrl,
@@ -41,13 +39,11 @@ class ModalUsaha {
     required this.id_peminjam,
     required this.pemilik,
     required this.totalPendanaan,
-    required this.danaTerkumpul,
     required this.bagiHasil,
     required this.status,
     required this.lokasi,
     required this.lamaTenor,
     required this.deskripsi,
-    required this.targetDate,
   });
 }
 
@@ -75,8 +71,6 @@ class _MarketplaceState extends State<Marketplace> {
           lokasi: item['lokasi'],
           lamaTenor: item['lama_tenor'],
           deskripsi: item['keterangan'],
-          danaTerkumpul: item['dana_terkumpul'],
-          targetDate: DateTime.parse(item['target_date']),
           // tambahkan atribut lain sesuai dengan struktur JSON
         );
         newDataList.add(modalUsaha);
@@ -530,46 +524,6 @@ class _MarketplaceState extends State<Marketplace> {
                               ),
                               SizedBox(
                                 height: 15,
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Crowd Funding',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Expanded(
-                                    child: LinearProgressIndicator(
-                                      value: (modalUsaha.danaTerkumpul /
-                                          modalUsaha
-                                              .totalPendanaan), // Ubah persentase sesuai kebutuhan
-                                      backgroundColor: Color.fromARGB(
-                                          255,
-                                          230,
-                                          230,
-                                          230), // Warna latar belakang garis
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        Color.fromARGB(
-                                            255, 0, 197, 180), // Warna garis
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    getRemainingDays(modalUsaha.targetDate),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ],
                               ),
                             ],
                           ),

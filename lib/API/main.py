@@ -557,18 +557,16 @@ def get_all_pinjaman():
     listPinjaman = []
     for row in cur.execute("select * from pinjaman JOIN peminjam ON pinjaman.id_peminjam = peminjam.id_peminjam"):
         dataPinjaman = {
+                'nama_pinjaman' : row[4],
                 'id_pinjaman': row[0],
-                'nama_pinjaman' : row[2],
-                'jumlah': row[3],
-                'lama_tenor' : row[4],
-                'bagi_hasil' : row[5],
-                'status_pinjaman' : row[7],
-                'keterangan' : row[8],
-                'dana_terkumpul' : row[9],
-                'target_date' : row[10],
-                'id_peminjam' : row[11],
-                'nama_peminjam' : row[15],
-                'lokasi' : row[17],
+                'id_peminjam' : row[1],
+                'jumlah': row[2],
+                'lama_tenor' : row[3],
+                'bagi_hasil' : row[8],
+                'status_pinjaman' : row[6],
+                'keterangan' : row[7],
+                'nama_peminjam' : row[13],
+                'lokasi' : row[15],
                 
             }
         listPinjaman.append(dataPinjaman)
