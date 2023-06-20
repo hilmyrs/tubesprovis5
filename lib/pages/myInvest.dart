@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'DetailPortofolio.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class MyInvest extends StatefulWidget {
   const MyInvest({super.key});
@@ -34,6 +37,29 @@ class ModalUsaha {
 }
 
 class _MyInvestState extends State<MyInvest> {
+  late Future<Map<String, dynamic>> assetData;
+
+  Future<Map<String, dynamic>> getAsset(String id, String type) async {
+    if (type == 'investor') {
+      final response =
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_asset/$id'));
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        throw Exception('Failed to fetch investor data');
+      }
+    } else {
+      final response =
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_angsuran/$id'));
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        return responseData;
+      } else {
+        throw Exception('Failed to fetch borrower data');
+      }
+    }
+  }
   List<ModalUsaha> modalUsahaList = [
     ModalUsaha(
       imageUrl:
@@ -155,68 +181,7 @@ class _MyInvestState extends State<MyInvest> {
       lokasi: "Sulawesi Utara",
       lamaTenor: "15 Bulan",
       deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Beras Bu Fitri",
-      pemilik: "Ibu Fitri",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Beras Bu Fitri",
-      pemilik: "Ibu Fitri",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Beras Bu Fitri",
-      pemilik: "Ibu Fitri",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Beras Bu Fitri",
-      pemilik: "Ibu Fitri",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Beras Bu Amida",
-      pemilik: "Ibu Fitri",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-  ];
+    );
 
   @override
   Widget build(BuildContext context) {
