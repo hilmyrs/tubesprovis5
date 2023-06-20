@@ -6,6 +6,7 @@ import 'package:icon_badge/icon_badge.dart';
 import 'Account.dart';
 import 'Withdraw.dart';
 import 'Topup.dart';
+import 'Notifikasi.dart';
 import 'package:intl/intl.dart';
 
 class Home extends StatefulWidget {
@@ -341,10 +342,20 @@ class _HomeState extends State<Home> {
                                                                     .bold),
                                                       ),
                                                     Spacer(),
-                                                    Icon(
-                                                      Icons.notifications,
-                                                      color: Colors.black,
-                                                      size: 30.0,
+                                                    GestureDetector(
+                                                      onTap: () {
+                                                        Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        Notifikasi()));
+                                                      },
+                                                      child: const Icon(
+                                                        Icons.notifications,
+                                                        color: Colors.black,
+                                                        size: 30.0,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -517,7 +528,7 @@ class _HomeState extends State<Home> {
                                                             },
                                                             child: const Icon(
                                                               Icons
-                                                                  .add_circle_outline,
+                                                                  .monetization_on_rounded,
                                                               color:
                                                                   Colors.black,
                                                               size: 30.0,
