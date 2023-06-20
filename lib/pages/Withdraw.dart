@@ -147,10 +147,19 @@ class _WithdrawState extends State<Withdraw> {
   List<int> pilihanNominal = [
     500000,
     1000000,
-    1500000,
     2000000,
+    2500000,
     5000000,
   ];
+
+  List<String> stringSelected = [
+    '500 ribu',
+    '1 juta',
+    '2 juta',
+    '2,5 juta',
+    '5 juta',
+  ];
+
   final nominalController = TextEditingController();
 
   int selectedRadioIndex = -1;
@@ -313,8 +322,11 @@ class _WithdrawState extends State<Withdraw> {
                                 crossAxisCount: 3,
                                 childAspectRatio: 2.0,
                               ),
-                              itemCount: pilihanNominal.length,
+                              itemCount: stringSelected.length,
                               itemBuilder: (BuildContext context, index) {
+                                final selectedText = selectedMethod == index
+                                    ? stringSelected[index]
+                                    : stringSelected[index];
                                 return Card(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -343,10 +355,7 @@ class _WithdrawState extends State<Withdraw> {
                                     child: Container(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          "Rp. " +
-                                              numberFormat
-                                                  .format(pilihanNominal[index])
-                                                  .toString(),
+                                          selectedText,
                                           style: TextStyle(
                                               color: selectedMethod == index
                                                   ? Color(0xff3e4784)

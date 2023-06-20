@@ -197,7 +197,12 @@ class _PeminjamanState extends State<Peminjaman> {
                                             Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                builder: (context) => Tagihan(),
+                                                builder: (context) => Tagihan(
+                                                  data: widget.data,
+                                                  data_dompet:
+                                                      widget.data_dompet,
+                                                  type: widget.type,
+                                                ),
                                               ),
                                             ); // Aksi yang ingin dilakukan saat tombol "Bayar Tagihan" ditekan
                                           },
