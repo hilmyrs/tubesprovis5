@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
       }
     } else {
       final response =
-          await http.get(Uri.parse('http://127.0.0.1:8000/get_borrower/$id'));
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_tagihan/$id'));
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         return responseData;
@@ -350,7 +350,10 @@ class _HomeState extends State<Home> {
                                                 ),
                                                 if (widget.type == "investor")
                                                   Text(
-                                                    "Rp. " + asset!['asset'],
+                                                    "Rp. " +
+                                                        numberFormat.format(
+                                                            asset!["data"]
+                                                                ["asset"]),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold),
@@ -358,7 +361,9 @@ class _HomeState extends State<Home> {
                                                 if (widget.type == "investor")
                                                   Text(
                                                     "Total Profit : Rp. " +
-                                                        asset!['profit'],
+                                                        numberFormat.format(
+                                                            asset!["data"]
+                                                                ["profit"]),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w100,
