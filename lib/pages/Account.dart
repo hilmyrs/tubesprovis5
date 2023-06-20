@@ -84,11 +84,6 @@ class _AccountState extends State<Account> {
                     child: Center(
                       child: Column(
                         children: [
-                          SizedBox(height: 10),
-                          CircleAvatar(
-                            radius: 40,
-                            child: Icon(Icons.person),
-                          ),
                           const SizedBox(height: 10),
                           Text(
                             'Halo ${investor!["data"]["name"]}',
@@ -117,28 +112,12 @@ class _AccountState extends State<Account> {
                         Row(
                           children: [
                             Text(
-                              'Email'.padRight(25, ' ') +
-                                  ': '.padRight(10, ' '),
+                              'Email'.padRight(25, ' ') + ': ',
                               style: TextStyle(),
                             ),
                             Flexible(
                               child: Text(
                                 '${investor["data"]["email"]}', // Ganti dengan email yang sesuai
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              'Password'.padRight(20, ' ') +
-                                  ': '.padRight(10, ' '),
-                              style: TextStyle(),
-                            ),
-                            Expanded(
-                              child: Text(
-                                '********', // Ganti dengan password yang sesuai
                               ),
                             ),
                           ],
@@ -161,30 +140,13 @@ class _AccountState extends State<Account> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => EditPage(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                'EDIT',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                         SizedBox(height: 15),
                         Row(
                           children: [
                             Text(
-                              'Nama Lengkap'.padRight(20, ' ') +
-                                  ': '.padRight(10, ' '),
+                              'Nama Lengkap  : ',
                               style: TextStyle(),
                             ),
                             Flexible(
@@ -198,8 +160,7 @@ class _AccountState extends State<Account> {
                         Row(
                           children: [
                             Text(
-                              'Tanggal Lahir'.padRight(20, ' ') +
-                                  ': '.padRight(10, ' '),
+                              'Tanggal Lahir     : ',
                               style: TextStyle(),
                             ),
                             Flexible(
@@ -213,8 +174,7 @@ class _AccountState extends State<Account> {
                         Row(
                           children: [
                             Text(
-                              'Alamat'.padRight(20, ' ') +
-                                  ': '.padRight(10, ' '),
+                              'Alamat                 : ',
                               style: TextStyle(),
                             ),
                             Flexible(
@@ -228,138 +188,11 @@ class _AccountState extends State<Account> {
                         Row(
                           children: [
                             Text(
-                              'No Handphone'.padRight(20, ' ') +
-                                  ': '.padRight(10, ' '),
+                              'No Handphone  : ',
                               style: TextStyle(),
                             ),
                             Text(
                               '${investor["data"]["phone"]}',
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              'KTP'.padRight(33, ' ') + ': '.padRight(10, ' '),
-                              style: TextStyle(),
-                            ),
-                            Text(
-                              'uploaded',
-                              style: TextStyle(
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.grey),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              'Selfie'.padRight(32, ' ') +
-                                  ': '.padRight(10, ' '),
-                              style: TextStyle(),
-                            ),
-                            Text(
-                              'uploaded',
-                              style: TextStyle(
-                                  fontStyle: FontStyle.italic,
-                                  color: Colors.grey),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.all(15),
-                    color: Color.fromARGB(255, 235, 232, 232),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Dokumen Saya',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        SizedBox(height: 15),
-                        Row(
-                          children: [
-                            Text(
-                              'Perjanjian Pendanaan',
-                              style: TextStyle(),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: OutlinedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('Tanda Tangan'),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        Row(
-                          children: [
-                            Text(
-                              'Perjanjian Layanan',
-                              style: TextStyle(),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: OutlinedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('Tanda Tangan'),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.all(15),
-                    color: Color.fromARGB(255, 235, 232, 232),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Akun Bank Saya',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        SizedBox(height: 15),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                'Rekening Bank belum terhubung',
-                                style: TextStyle(),
-                              ),
-                            ),
-                            Expanded(
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: OutlinedButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    'Tambahkan Rekening',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
                             ),
                           ],
                         ),
