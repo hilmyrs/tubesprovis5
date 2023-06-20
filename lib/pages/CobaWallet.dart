@@ -280,17 +280,51 @@ class _CobaWalletState extends State<CobaWallet> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  Icon(
-                                                      Icons
-                                                          .add_circle_outline_outlined,
-                                                      size: 30,
-                                                      color: Colors.black),
-                                                  SizedBox(width: 220),
-                                                  Icon(
-                                                      Icons
-                                                          .add_circle_outline_outlined,
-                                                      size: 30,
-                                                      color: Colors.black),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      Topup(
+                                                                        data: widget
+                                                                            .data,
+                                                                        data_dompet:
+                                                                            widget.data_dompet,
+                                                                        type: widget
+                                                                            .type,
+                                                                      )));
+                                                    },
+                                                    child: const Icon(
+                                                      Icons.add_circle_outline,
+                                                      color: Colors.black,
+                                                      size: 30.0,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 220),
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      Withdraw(
+                                                                        data: widget
+                                                                            .data,
+                                                                        data_dompet:
+                                                                            widget.data_dompet,
+                                                                        type: widget
+                                                                            .type,
+                                                                      )));
+                                                    },
+                                                    child: const Icon(
+                                                      Icons.add_circle_outline,
+                                                      color: Colors.black,
+                                                      size: 30.0,
+                                                    ),
+                                                  ),
                                                 ],
                                               )
                                             ],

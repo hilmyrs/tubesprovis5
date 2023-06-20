@@ -268,7 +268,7 @@ class _WithdrawState extends State<Withdraw> {
                                 "Rp. " +
                                     numberFormat.format(user!["data"]["saldo"]),
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w100, fontSize: 12),
+                                    fontWeight: FontWeight.bold, fontSize: 15),
                               ),
                             ],
                           ),
@@ -328,10 +328,16 @@ class _WithdrawState extends State<Withdraw> {
                                   child: InkWell(
                                     onTap: () {
                                       setState(() {
-                                        selectedMethod = index;
+                                        //if clicked again then selected method = null
+                                        if (selectedMethod == index) {
+                                          selectedMethod = null;
+                                          nominalController.clear();
+                                        } else {
+                                          selectedMethod = index;
 
-                                        nominalController.text =
-                                            pilihanNominal[index].toString();
+                                          nominalController.text =
+                                              pilihanNominal[index].toString();
+                                        }
                                       });
                                     },
                                     child: Container(

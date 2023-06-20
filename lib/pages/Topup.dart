@@ -271,7 +271,7 @@ class _TopupState extends State<Topup> {
                             ],
                           ),
                           //white space
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           //form buat Topup
@@ -326,9 +326,16 @@ class _TopupState extends State<Topup> {
                                   child: InkWell(
                                     onTap: () {
                                       setState(() {
-                                        selectedMethod = index;
-                                        nominalController.text =
-                                            pilihanNominal[index].toString();
+                                        //if clicked again then selected method = null
+                                        if (selectedMethod == index) {
+                                          selectedMethod = null;
+                                          nominalController.clear();
+                                        } else {
+                                          selectedMethod = index;
+
+                                          nominalController.text =
+                                              pilihanNominal[index].toString();
+                                        }
                                       });
                                     },
                                     child: Container(
