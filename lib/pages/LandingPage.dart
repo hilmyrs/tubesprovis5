@@ -24,7 +24,6 @@ class _LandingPageState extends State<LandingPage> {
     _pageController.addListener(() {
       setState(() {
         currentPage = _pageController.page!.toDouble();
-        print(currentPage);
       });
     });
     super.initState();

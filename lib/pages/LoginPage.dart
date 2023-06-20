@@ -72,7 +72,6 @@ Future<void> loginUser(
       final responseData = jsonDecode(response.body);
       String id = responseData['id'];
       String id_dompet = responseData['id_dompet'];
-      print(id_dompet);
       // Registrasi berhasil
       showDialog(
         context: context,
@@ -123,7 +122,6 @@ Future<void> loginUser(
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _email = TextEditingController(text: "");
   TextEditingController _password = TextEditingController(text: "");
-  bool _isPasswordVisible = false; // Track the visibility of the password
 
   void _loginUser() {
     String email = _email.text;
@@ -264,15 +262,13 @@ class _LoginPageState extends State<LoginPage> {
                           color: Color(0xff67727d)),
                     ),
                     TextField(
-                      obscureText:
-                          !_isPasswordVisible, // Hide password when not visible
+                      obscureText: true,
                       controller: _password,
                       cursorColor: Colors.black,
                       style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -281,19 +277,8 @@ class _LoginPageState extends State<LoginPage> {
                         hintStyle: TextStyle(color: Colors.grey[800]),
                         prefixIcon: Icon(Icons.lock_outline_rounded),
                         prefixIconColor: Colors.black,
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _isPasswordVisible = !_isPasswordVisible;
-                            });
-                          },
-                          child: Icon(
-                            _isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.black,
-                          ),
-                        ),
+                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                        suffixIconColor: Colors.black,
                         hintText: "Password",
                       ),
                     ),

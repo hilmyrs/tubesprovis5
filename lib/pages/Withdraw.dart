@@ -36,7 +36,6 @@ class _WithdrawState extends State<Withdraw> {
           await http.get(Uri.parse('http://127.0.0.1:8000/get_borrower/$id'));
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
-        print("borrower");
         return responseData;
       } else {
         throw Exception('Failed to fetch borrower data');
@@ -147,19 +146,10 @@ class _WithdrawState extends State<Withdraw> {
   List<int> pilihanNominal = [
     500000,
     1000000,
+    1500000,
     2000000,
-    2500000,
     5000000,
   ];
-
-  List<String> stringSelected = [
-    '500 ribu',
-    '1 juta',
-    '2 juta',
-    '2,5 juta',
-    '5 juta',
-  ];
-
   final nominalController = TextEditingController();
 
   int selectedRadioIndex = -1;
@@ -277,7 +267,7 @@ class _WithdrawState extends State<Withdraw> {
                                 "Rp. " +
                                     numberFormat.format(user!["data"]["saldo"]),
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 15),
+                                    fontWeight: FontWeight.w100, fontSize: 12),
                               ),
                             ],
                           ),
@@ -322,11 +312,8 @@ class _WithdrawState extends State<Withdraw> {
                                 crossAxisCount: 3,
                                 childAspectRatio: 2.0,
                               ),
-                              itemCount: stringSelected.length,
+                              itemCount: pilihanNominal.length,
                               itemBuilder: (BuildContext context, index) {
-                                final selectedText = selectedMethod == index
-                                    ? stringSelected[index]
-                                    : stringSelected[index];
                                 return Card(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),
@@ -340,22 +327,19 @@ class _WithdrawState extends State<Withdraw> {
                                   child: InkWell(
                                     onTap: () {
                                       setState(() {
-                                        //if clicked again then selected method = null
-                                        if (selectedMethod == index) {
-                                          selectedMethod = null;
-                                          nominalController.clear();
-                                        } else {
-                                          selectedMethod = index;
+                                        selectedMethod = index;
 
-                                          nominalController.text =
-                                              pilihanNominal[index].toString();
-                                        }
+                                        nominalController.text =
+                                            pilihanNominal[index].toString();
                                       });
                                     },
                                     child: Container(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          selectedText,
+                                          "Rp. " +
+                                              numberFormat
+                                                  .format(pilihanNominal[index])
+                                                  .toString(),
                                           style: TextStyle(
                                               color: selectedMethod == index
                                                   ? Color(0xff3e4784)
@@ -474,7 +458,6 @@ class _WithdrawState extends State<Withdraw> {
                                       user,
                                       paymentOption,
                                       selectedWallet);
-                                  print('Container di-tap');
                                 },
                                 child: Container(
                                   padding: EdgeInsets.all(16),

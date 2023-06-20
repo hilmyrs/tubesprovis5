@@ -141,8 +141,6 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController _address = TextEditingController();
   TextEditingController _name = TextEditingController();
   TextEditingController _password = TextEditingController();
-  bool _isPasswordVisible = false; // Track the visibility of the password
-
   String _roles = "Investor";
   List<DropdownMenuItem<String>> roles = [
     const DropdownMenuItem<String>(
@@ -338,15 +336,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           color: Color(0xff67727d)),
                     ),
                     TextField(
-                      obscureText:
-                          !_isPasswordVisible, // Hide password when not visible
+                      obscureText: true,
                       controller: _password,
                       cursorColor: Colors.black,
                       style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black),
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -355,19 +351,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         hintStyle: TextStyle(color: Colors.grey[800]),
                         prefixIcon: Icon(Icons.lock_outline_rounded),
                         prefixIconColor: Colors.black,
-                        suffixIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              _isPasswordVisible = !_isPasswordVisible;
-                            });
-                          },
-                          child: Icon(
-                            _isPasswordVisible
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            color: Colors.black,
-                          ),
-                        ),
+                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                        suffixIconColor: Colors.black,
                         hintText: "Password",
                       ),
                     ),
@@ -431,12 +416,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                 1900), //DateTime.now() - not to allow to choose before today.
                             lastDate: DateTime(2025));
                         if (pickedDate != null) {
-                          print(
-                              pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                          //pickedDate output format => 2021-03-10 00:00:00.000
                           String formattedDate =
                               DateFormat('yyyy-MM-dd').format(pickedDate);
-                          print(
-                              formattedDate); //formatted date output using intl package =>  2021-03-16
+                          //formatted date output using intl package =>  2021-03-16
                           //you can implement different kind of Date Format here according to your requirement
 
                           setState(() {

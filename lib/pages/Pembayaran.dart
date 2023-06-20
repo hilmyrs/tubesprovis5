@@ -71,6 +71,48 @@ class _PembayaranState extends State<Pembayaran> {
     var response = await http.put(url, headers: headers, body: body);
   }
 
+  Future<void> tambahPendanaan(
+      int id, int id_investor, int jml_pendanaan, int total_profit) async {
+    var url = Uri.parse('http://127.0.0.1:8000/tambah_pendanaan/');
+    var headers = {'Content-Type': 'application/json'};
+    var body = jsonEncode({
+      "id_pinjaman": id,
+      "id_investor": id_investor,
+      "jumlah": jml_pendanaan,
+      "keuntungan": total_profit,
+    });
+
+    var response = await http.post(url, headers: headers, body: body);
+    if (response.statusCode == 200) {
+      print("Pendanaan Bertambah");
+    }
+  }
+
+  Future<void> tambahAngsuran(
+    int id_pinjaman,
+    int id_status,
+    String jatuh_tempo,
+    String tanggal_pembayaran,
+    int jml_angsuran,
+    int jml_bagi_hasil,
+  ) async {
+    var url = Uri.parse('http://127.0.0.1:8000/tambah_angsuran/');
+    var headers = {'Content-Type': 'application/json'};
+    var body = jsonEncode({
+      "id_pinjaman": id_pinjaman,
+      "id_status": id_status,
+      "jatuh_tempo": jatuh_tempo,
+      "tanggal_pembayaran": tanggal_pembayaran,
+      "jml_angsuran": jml_angsuran,
+      "jml_bagi_hasil": jml_bagi_hasil,
+    });
+
+    var response = await http.post(url, headers: headers, body: body);
+    if (response.statusCode == 200) {
+      print("Angsuran Bertambah");
+    }
+  }
+
   Future<void> addTransaction(
       int id_jenis,
       int id_dompet,
@@ -94,13 +136,32 @@ class _PembayaranState extends State<Pembayaran> {
       body: jsonEncode(data),
       headers: {'Content-Type': 'application/json'},
     );
-    print("Masukk");
 
     if (response.statusCode == 200) {
       if (id_bayar == 1 && id_jenis == 1) {
         updateSaldo(id_dompet, saldo - jml_transaksi);
+        tambahPendanaan(
+          widget.modalUsaha.id_pinjaman,
+          int.parse(widget.data),
+          jml_transaksi,
+          ((jml_transaksi / widget.modalUsaha.bagiHasil)).toInt(),
+        );
       } else if (id_bayar == 1 && id_jenis == 2) {
         updateSaldo(id_dompet, saldo + jml_transaksi);
+        Duration month = Duration(days: 30);
+        DateFormat dateFormat = DateFormat('yyyy-MM-dd');
+        DateTime dateTime = dateFormat.parse(tanggal);
+        DateTime jatuhTempo = dateTime.add(month);
+        String strJatuhTempo = DateFormat('yyyy-MM-dd').format(jatuhTempo);
+        int bagi_hasil = ((jml_transaksi / widget.modalUsaha.bagiHasil) /
+                widget.modalUsaha.lamaTenor)
+            .toInt();
+        int total =
+            (((jml_transaksi / widget.modalUsaha.bagiHasil) + jml_transaksi) /
+                    widget.modalUsaha.lamaTenor)
+                .toInt();
+        tambahAngsuran(widget.modalUsaha.id_pinjaman, 1, strJatuhTempo, "",
+            total, bagi_hasil);
       }
       showDialog(
         context: context,
@@ -235,13 +296,11 @@ class _PembayaranState extends State<Pembayaran> {
                           ElevatedButton(
                             onPressed: () {
                               // Aksi yang ingin dilakukan saat tombol ditekan
-                              print(
-                                int.parse(peminjam!["data"]["id_dompet"]),
-                              );
                               String metodePembayaran = selectedMethod ?? '';
                               String nominal = nominalController.text;
                               DateTime currentDate = DateTime.now();
-                              String now = currentDate.toString();
+                              String now =
+                                  DateFormat('yyyy-MM-dd').format(currentDate);
                               int id = 0;
                               if (metodePembayaran == 'Saldo') {
                                 id = 1;
@@ -257,13 +316,14 @@ class _PembayaranState extends State<Pembayaran> {
                                   id);
                               addTransaction(
                                   2,
-                                  peminjam["data"]["id_dompet"],
+                                  peminjam!["data"]["id_dompet"],
                                   peminjam["data"]["saldo"],
                                   "Menerima Pendanaan",
                                   int.parse(nominal),
                                   now,
                                   ("Masuk Kedalam Saldo"),
                                   1);
+
                               // Lakukan sesuatu dengan metode pembayaran dan nominal yang dipilih
                             },
                             child: Text('Bayar'),

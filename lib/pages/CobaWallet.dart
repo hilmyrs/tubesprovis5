@@ -66,7 +66,6 @@ class _CobaWalletState extends State<CobaWallet> {
         await http.get(Uri.parse('http://127.0.0.1:8000/get_id_history/$id'));
     if (hasil.statusCode == 200) {
       final jsonData = jsonDecode(hasil.body);
-      print(jsonData['data']);
       List<History> newDataList = [];
       for (var item in jsonData['data']) {
         // Membuat objek History dari item JSON
@@ -96,7 +95,6 @@ class _CobaWalletState extends State<CobaWallet> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     final numberFormat = NumberFormat('#,##0.00', 'en_US');
     return FutureBuilder<Map<String, dynamic>>(
         future: userData,
@@ -167,9 +165,8 @@ class _CobaWalletState extends State<CobaWallet> {
                                       ),
                                     ],
                                   ),
-                                  
                                   width: double.infinity,
-                                 height: 470.0 + listHistory.length * 120.0,
+                                  height: 1200,
                                 ),
                                 Center(
                                   child: Container(
@@ -282,51 +279,17 @@ class _CobaWalletState extends State<CobaWallet> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
                                                 children: [
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Topup(
-                                                                        data: widget
-                                                                            .data,
-                                                                        data_dompet:
-                                                                            widget.data_dompet,
-                                                                        type: widget
-                                                                            .type,
-                                                                      )));
-                                                    },
-                                                    child: const Icon(
-                                                      Icons.add_circle_outline,
-                                                      color: Colors.black,
-                                                      size: 30.0,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 220),
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      Navigator.push(
-                                                          context,
-                                                          MaterialPageRoute(
-                                                              builder:
-                                                                  (context) =>
-                                                                      Withdraw(
-                                                                        data: widget
-                                                                            .data,
-                                                                        data_dompet:
-                                                                            widget.data_dompet,
-                                                                        type: widget
-                                                                            .type,
-                                                                      )));
-                                                    },
-                                                    child: const Icon(
-                                                      Icons.monetization_on_rounded,
-                                                      color: Colors.black,
-                                                      size: 30.0,
-                                                    ),
-                                                  ),
+                                                  Icon(
+                                                      Icons
+                                                          .add_circle_outline_outlined,
+                                                      size: 30,
+                                                      color: Colors.black),
+                                                  SizedBox(width: 220),
+                                                  Icon(
+                                                      Icons
+                                                          .add_circle_outline_outlined,
+                                                      size: 30,
+                                                      color: Colors.black),
                                                 ],
                                               )
                                             ],
@@ -426,7 +389,7 @@ class _CobaWalletState extends State<CobaWallet> {
                                                                                 SizedBox(
                                                                                   width: 20,
                                                                                 ),
-                                                                                Expanded(
+                                                                                Flexible(
                                                                                   child: Container(
                                                                                     margin: EdgeInsets.only(left: 15),
                                                                                     padding: EdgeInsets.all(5),
@@ -463,8 +426,7 @@ class _CobaWalletState extends State<CobaWallet> {
                                                                                   child: Container(
                                                                                     margin: EdgeInsets.only(left: 20),
                                                                                     child: Row(
-                                                                                      
-                                                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                                                      mainAxisAlignment: MainAxisAlignment.end,
                                                                                       children: [
                                                                                         if (walletView.id_jenis == 2)
                                                                                           Text(

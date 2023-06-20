@@ -21,6 +21,7 @@ class Marketplace extends StatefulWidget {
 class ModalUsaha {
   // Jumlah dana yang terkumpul
   final String imageUrl;
+  final int id_pinjaman;
   final int id_peminjam;
   final String nama;
   final String pemilik;
@@ -36,6 +37,7 @@ class ModalUsaha {
   ModalUsaha({
     required this.imageUrl,
     required this.nama,
+    required this.id_pinjaman,
     required this.id_peminjam,
     required this.pemilik,
     required this.totalPendanaan,
@@ -57,7 +59,6 @@ class _MarketplaceState extends State<Marketplace> {
         await http.get(Uri.parse('http://127.0.0.1:8000/get_all_pinjaman'));
     if (hasil.statusCode == 200) {
       final jsonData = jsonDecode(hasil.body);
-      print(jsonData['data']);
       List<ModalUsaha> newDataList = [];
       for (var item in jsonData['data']) {
         // Membuat objek ModalUsaha dari item JSON
@@ -65,6 +66,7 @@ class _MarketplaceState extends State<Marketplace> {
           imageUrl:
               "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
           nama: item['nama_pinjaman'],
+          id_pinjaman: item['id_pinjaman'],
           id_peminjam: item['id_peminjam'],
           pemilik: item['nama_peminjam'],
           totalPendanaan: item['jumlah'],
