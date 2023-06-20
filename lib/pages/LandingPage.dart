@@ -46,7 +46,7 @@ class _LandingPageState extends State<LandingPage> {
       Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Image.network(
-          'https://picsum.photos/200',
+          'https://i.ibb.co/QpSc5WZ/Yuk-Danain.png',
           height: 200,
           width: 460,
           fit: BoxFit.cover,
@@ -126,89 +126,10 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 400,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 0.0, right: 0.0, top: 15, bottom: 0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Baca Syarat dan Ketentuan '),
-                    InkWell(
-                      child: Text(
-                        'di sini',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 80,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  "Testimoni",
-                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.w400),
-                ),
-              ),
-              Container(
-                height: size.height * 0.3,
-                child: PageView(
-                  physics: BouncingScrollPhysics(),
-                  controller: _pageController,
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(right: 15),
-                      width: 250,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 15),
-                      width: 250,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 15),
-                      width: 250,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            "https://images.unsplash.com/photo-1607355739828-0bf365440db5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1444&q=80",
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              
+                 
             ],
           )),
     ]));
