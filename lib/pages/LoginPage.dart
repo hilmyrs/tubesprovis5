@@ -172,17 +172,17 @@ class _LoginPageState extends State<LoginPage> {
             height: 50,
           ),
           Container(
-            width: 120,
-            height: 120,
+            width:250,
+            height: 200,
             decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 image: DecorationImage(
                     image: NetworkImage(
-                        "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"),
+                        "https://i.ibb.co/QpSc5WZ/Yuk-Danain.png"),
                     fit: BoxFit.cover)),
           ),
           SizedBox(
-            height: 50,
+            height: 20,
           ),
           Container(
               width: double.infinity,
