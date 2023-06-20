@@ -13,8 +13,13 @@ class Tagihan extends StatefulWidget {
   final String data;
   final String data_dompet;
   final String type;
+  final int jumlah;
 
-  Tagihan({required this.data, required this.type, required this.data_dompet});
+  Tagihan(
+      {required this.data,
+      required this.type,
+      required this.data_dompet,
+      required this.jumlah});
 
   @override
   _TagihanState createState() => _TagihanState();
@@ -206,7 +211,9 @@ class _TagihanState extends State<Tagihan> {
                                     Row(
                                       children: [
                                         Text(
-                                          "Rp. " + numberFormat.format(tagihan),
+                                          "Rp. " +
+                                              numberFormat
+                                                  .format(widget.jumlah),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 30),
@@ -214,20 +221,6 @@ class _TagihanState extends State<Tagihan> {
                                       ],
                                     ),
                                     const SizedBox(height: 20),
-                                    Text(
-                                      'Batas Pembayaran',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      '8 April 2023 11:59',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ],
@@ -284,7 +277,7 @@ class _TagihanState extends State<Tagihan> {
                       onTap: () {
                         updateSaldo(
                             user["data"]["id_dompet"],
-                            (user["data"]["saldo"] - tagihan),
+                            (user["data"]["saldo"] - widget.jumlah),
                             tagihan,
                             user,
                             "Dompet",
