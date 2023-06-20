@@ -20,10 +20,6 @@ app.add_middleware(
 def read_root():
  return {"Hello": "World"}
 
-@app.get("/mahasiswa/{nim}")
-def ambil_mhs(nim:str):
-    return {nim: "Bono Subono"} 
-
 @app.get("/init/")
 def init_db():
     try:
@@ -259,7 +255,32 @@ def update_saldo(i : UpdateSaldo):
         return ({"status":"terjadi error"})   
     finally:   
         con.close()
-        return ({"status":"sukses bro"}) 
+        return ({"status":"sukses bro"})
+    
+class Pinjaman(BaseModel):
+    id_peminjam : int
+    nama_pinjaman : str
+    jumlah_pinjaman : int
+    lama_tenor : int 
+    bagi_hasil : int
+    sisa_angsuran : int
+    status : str
+    keterangan : str
+   
+@app.post("/tambah_pinjaman")
+def tambah_pinjaman(i: Pinjaman):
+    try:
+        DB_NAME = "tubesProvis.db"
+        con = sqlite3.connect(DB_NAME)
+        cur1 = con.cursor()
+        cur1.execute("""insert into pinjaman (id_peminjam, nama_pinjaman, jumlah_pinjaman, lama_tenor, bagi_hasil, sisa_angsuran, status_pinjaman, keterangan) 
+                    VALUES ("{}","{}","{}","{}","{}","{}","{}","{}")""".format(i.id_peminjam,i.nama_pinjaman, i.jumlah_pinjaman, i.lama_tenor, i.bagi_hasil, i.sisa_angsuran,i.status, i.keterangan))
+        con.commit()
+    except:
+        return ({"status":"terjadi error"})   
+    finally:   
+        con.close()
+        return ({"status":"sukses bro"})   
     
 class Borrower(BaseModel):
     email : str
@@ -389,36 +410,12 @@ def tambah_peminjam(i: Peminjam):
         con.close()
     return {"status":"ok berhasil insert satu record"}
 
-class Pinjaman(BaseModel):
-   id_peminjam: int
-   jumlah_pinjaman : int
-   kali_angsuran : int
-   sisa_angsuran : int
-   status_pinjaman : str
-   keterangan : str
-   
-@app.post("/tambah_pinjaman")
-def tambah_pinjaman(i: Pinjaman):
-    try:
-        DB_NAME = "tubesProvis.db"
-        con = sqlite3.connect(DB_NAME)
-        cur = con.cursor()
-        cur.execute("""insert into pinjaman (id_peminjam, jumlah_pinjaman, kali_angsuran, sisa_angsuran, status_pinjaman, keterangan) 
-                    VALUES ("{}","{}","{}","{}","{}","{}")""".format(i.id_peminjam, i.jumlah_pinjaman, i.kali_angsuran, i.sisa_angsuran, i.status_pinjaman, i.keterangan))
-        con.commit()
-    except:
-        return ({"status":"terjadi error"})   
-    finally:   
-        con.close()
-    return {"status":"ok berhasil insert satu record"}
-
 @app.get("/get_id_history/{id_dompet}")
 def get_id__history(id_dompet):
    try:
     DB_NAME = "tubesProvis.db"
     con = sqlite3.connect(DB_NAME)
     cur = con.cursor()
-    i = 0
     data_history = []
     for row in cur.execute("select * from history_transaksi WHERE id_dompet = {}".format(id_dompet)):
         history_data = {
@@ -434,28 +431,6 @@ def get_id__history(id_dompet):
    finally:    
     con.close()
     return ({"data": data_history})
-
-@app.get("/get_detail_history/{id_history}")
-def get_detail_history(id_history):
-   try:
-    DB_NAME = "tubesProvis.db"
-    con = sqlite3.connect(DB_NAME)
-    cur = con.cursor()
-    history = {}
-    for row in cur.execute("select * from history_transaksi WHERE id_history = {}".format(id_history)):
-        history_data = {
-                'id_jenis': row[1],
-                'nama' : row[3],
-                'jumlah': row[4],
-                'tanggal' : row[5],
-                'keterangan' : row[6],
-            }
-        history = history_data
-   except:
-    return ({"status":"terjadi error"})   
-   finally:    
-    con.close()
-    return ({"data": history})
     
 @app.get("/get_dompet/{id_dompet}")
 def get_dompet(id_dompet):
@@ -471,6 +446,65 @@ def get_dompet(id_dompet):
    finally:    
     con.close()
    return {"data":recs}
+
+
+@app.get("/get_all_pinjaman/")
+def get_pinjaman():
+   try:
+    DB_NAME = "tubesProvis.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    listPinjaman = []
+    for row in cur.execute("select * from pinjaman JOIN peminjam ON pinjaman.id_peminjam = peminjam.id_peminjam"):
+        dataPinjaman = {
+                'id_pinjaman': row[0],
+                'nama_pinjaman' : row[2],
+                'jumlah': row[3],
+                'lama_tenor' : row[4],
+                'bagi_hasil' : row[5],
+                'status_pinjaman' : row[7],
+                'keterangan' : row[8],
+                'dana_terkumpul' : row[9],
+                'target_date' : row[10],
+                'id_peminjam' : row[11],
+                'nama_peminjam' : row[15],
+                'lokasi' : row[17],
+                
+            }
+        listPinjaman.append(dataPinjaman)
+   except:
+    return ({"status":"terjadi error"})   
+   finally:    
+    con.close()
+    return ({"data": listPinjaman})
+
+
+@app.get("/get_pinjaman/{id_peminjam}")
+def get_pinjaman(id_peminjam):
+   try:
+    DB_NAME = "tubesProvis.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    listPinjaman = []
+    for row in cur.execute("select * from pinjaman JOIN peminjam ON pinjaman.id_peminjam = peminjam.id_peminjam WHERE pinjaman.id_peminjam = {}".format(id_peminjam)):
+        dataPinjaman = {
+                'id_pinjaman': row[0],
+                'nama_pinjaman' : row[2],
+                'jumlah': row[3],
+                'lama_tenor' : row[4],
+                'bagi_hasil' : row[5],
+                'status_pinjaman' : row[7],
+                'keterangan' : row[8],
+                'nama_peminjam' : row[13],
+                'lokasi' : row[15],
+                
+            }
+        listPinjaman.append(dataPinjaman)
+   except:
+    return ({"status":"terjadi error"})   
+   finally:    
+    con.close()
+    return ({"data": listPinjaman})
 
 @app.get("/get_investor/{id_investor}")
 def get_investor(id_investor):
@@ -522,19 +556,3 @@ def get_investor(id_borrower):
    finally:    
     con.close()
     return ({"data": investor})
-
-@app.get("/get_pinjaman/{id_pinjaman}")
-def get_pinjaman(id_pinjaman):
-   try:
-    DB_NAME = "tubesProvis.db"
-    con = sqlite3.connect(DB_NAME)
-    cur = con.cursor()
-    recs = []
-    for row in cur.execute("select * from pinjaman JOIN peminjam ON pinjaman.id_peminjam = peminjam.id_peminjam WHERE id_pinjaman = {}".format(id_pinjaman)):
-        recs.append(row)
-   except:
-    return ({"status":"terjadi error"})   
-   finally:    
-    con.close()
-   return {"data":recs}
-

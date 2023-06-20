@@ -3,9 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:tubes/pages/DetailPeminjaman.dart';
 import 'package:tubes/pages/Tagihan.dart';
 import 'package:tubes/pages/PeminjamanBaru.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class Peminjaman extends StatefulWidget {
-  const Peminjaman({super.key});
+  final String data;
+  final String data_dompet;
+  final String type;
+
+  Peminjaman(
+      {required this.data, required this.type, required this.data_dompet});
 
   @override
   State<Peminjaman> createState() => _PeminjamanState();
@@ -15,11 +23,11 @@ class ModalUsaha {
   final String imageUrl;
   final String nama;
   final String pemilik;
-  final String totalPendanaan;
-  final String bagiHasil;
+  final int totalPendanaan;
+  final int bagiHasil;
   final String status;
   final String lokasi;
-  final String lamaTenor;
+  final int lamaTenor;
   final String deskripsi;
 
   ModalUsaha({
@@ -36,294 +44,219 @@ class ModalUsaha {
 }
 
 class _PeminjamanState extends State<Peminjaman> {
-  List<ModalUsaha> modalUsahaList = [
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 2.500.000",
-      bagiHasil: "12%",
-      status: "Sedang Berlangsung",
-      lokasi: "Jawa Barat",
-      lamaTenor: "10 Bulan",
-      deskripsi:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 1.000.000",
-      bagiHasil: "10%",
-      status: "Selesai",
-      lokasi: "Kalimantan Barat",
-      lamaTenor: "5 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 1.500.000",
-      bagiHasil: "8%",
-      status: "Sedang Berlangsung",
-      lokasi: "Bali",
-      lamaTenor: "12 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-    ModalUsaha(
-      imageUrl:
-          "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-      nama: "Bubur Bu Kurnia",
-      pemilik: "Ibu Kurnia",
-      totalPendanaan: "Rp 5.500.000",
-      bagiHasil: "20%",
-      status: "Selesai",
-      lokasi: "Sulawesi Utara",
-      lamaTenor: "15 Bulan",
-      deskripsi: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    ),
-  ];
+  late Future<List<ModalUsaha>> modalUsahaList;
+
+  Future<List<ModalUsaha>> getPeminjaman(String id) async {
+    final hasil =
+        await http.get(Uri.parse('http://127.0.0.1:8000/get_pinjaman/$id'));
+    if (hasil.statusCode == 200) {
+      final jsonData = jsonDecode(hasil.body);
+      print(jsonData['data']);
+      List<ModalUsaha> newDataList = [];
+      for (var item in jsonData['data']) {
+        // Membuat objek ModalUsaha dari item JSON
+        ModalUsaha modalUsaha = ModalUsaha(
+          imageUrl:
+              "https://images.unsplash.com/photo-1531256456869-ce942a665e80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MTI4fHxwcm9maWxlfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+          nama: item['nama_pinjaman'],
+          pemilik: item['nama_peminjam'],
+          totalPendanaan: item['jumlah'],
+          bagiHasil: item['bagi_hasil'],
+          status: item['status_pinjaman'],
+          lokasi: item['lokasi'],
+          lamaTenor: item['lama_tenor'],
+          deskripsi: item['keterangan'],
+          // tambahkan atribut lain sesuai dengan struktur JSON
+        );
+        newDataList.add(modalUsaha);
+      }
+
+      return newDataList;
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    modalUsahaList = getPeminjaman(widget.data);
+  }
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Container(
-                padding: const EdgeInsets.only(top: 30),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Peminjaman',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
+    final numberFormat = NumberFormat('#,##0.00', 'en_US');
+    return FutureBuilder<List<ModalUsaha>>(
+      future: modalUsahaList,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        } else if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        } else {
+          final listPeminjaman = snapshot.data!;
+
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Center(
+                    child: Container(
+                      padding: const EdgeInsets.only(top: 30),
+                      child: Column(
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Peminjaman',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Stack(
-              children: [
-                Positioned.fill(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-                    margin: EdgeInsets.only(top: 50),
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(142, 220, 179, 1),
-                      borderRadius: BorderRadius.circular(40),
-                      border: Border.all(
-                        color: Color.fromRGBO(142, 220, 179, 1), // Warna border
-                        width: 1, // Ketebalan border
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(
-                              0.2), // Warna bayangan (black) dengan opasitas 0.2
-                          spreadRadius: 2, // Jarak penyebaran bayangan
-                          blurRadius: 4, // Jarak blur bayangan
-                          offset: Offset(0,
-                              2), // Posisi offset bayangan (horizontal, vertical)
-                        ),
-                      ],
-                    ),
-                    width: double.infinity,
-                    //height: 800,
                   ),
-                ),
-                Center(
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Container(
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Stack(
+                    children: [
+                      Positioned.fill(
+                        child: Container(
                           padding: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 30),
-                          margin: EdgeInsets.only(top: 7),
+                              vertical: 20, horizontal: 50),
+                          margin: EdgeInsets.only(top: 50),
                           decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(30),
-                              border: Border.all(
-                                color: Color.fromRGBO(
-                                    175, 175, 175, 1), // Warna border
-                                width: 0.5, // Ketebalan border
+                            color: Color.fromRGBO(142, 220, 179, 1),
+                            borderRadius: BorderRadius.circular(40),
+                            border: Border.all(
+                              color: Color.fromRGBO(
+                                  142, 220, 179, 1), // Warna border
+                              width: 1, // Ketebalan border
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(
+                                    0.2), // Warna bayangan (black) dengan opasitas 0.2
+                                spreadRadius: 2, // Jarak penyebaran bayangan
+                                blurRadius: 4, // Jarak blur bayangan
+                                offset: Offset(0,
+                                    2), // Posisi offset bayangan (horizontal, vertical)
                               ),
-                              boxShadow: [
-                                BoxShadow(blurRadius: 2.0, offset: Offset(0, 5))
-                              ]
-                              // Menggunakan BoxConstraints untuk mengubah lebar
-                              ),
-                          constraints:
-                              BoxConstraints(maxWidth: 800), // Lebar maksimum
-                          width: 380,
-                          height: 125,
+                            ],
+                          ),
+                          width: double.infinity,
+                          //height: 800,
+                        ),
+                      ),
+                      Center(
+                        child: Container(
                           child: Column(
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Tagihan Anda',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 20, horizontal: 30),
+                                margin: EdgeInsets.only(top: 7),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(30),
+                                    border: Border.all(
+                                      color: Color.fromRGBO(
+                                          175, 175, 175, 1), // Warna border
+                                      width: 0.5, // Ketebalan border
                                     ),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  ElevatedButton(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 2.0, offset: Offset(0, 5))
+                                    ]
+                                    // Menggunakan BoxConstraints untuk mengubah lebar
+                                    ),
+                                constraints: BoxConstraints(
+                                    maxWidth: 800), // Lebar maksimum
+                                width: 380,
+                                height: 125,
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Tagihan Anda',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) => Tagihan(),
+                                              ),
+                                            ); // Aksi yang ingin dilakukan saat tombol "Bayar Tagihan" ditekan
+                                          },
+                                          style: ElevatedButton.styleFrom(
+                                            primary: Color.fromARGB(
+                                              255,
+                                              26,
+                                              168,
+                                              158,
+                                            ), // Warna latar belakang button
+                                            onPrimary: Colors
+                                                .white, // Warna teks pada button
+                                          ),
+                                          child: Text('Bayar Tagihan'),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Rp 1,500,000',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Bayar Sebelum 8 April 2023 11:59',
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 10),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 20),
+                              Padding(
+                                padding: EdgeInsets.only(left: 20),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: ElevatedButton(
                                     onPressed: () {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => Tagihan(),
+                                          builder: (context) => PeminjamanBaru(
+                                            data: widget.data,
+                                            data_dompet: widget.data_dompet,
+                                            type: widget.type,
+                                          ),
                                         ),
-                                      ); // Aksi yang ingin dilakukan saat tombol "Bayar Tagihan" ditekan
+                                      ); // Aksi yang ingin dilakukan saat tombol "Ajuan Peminjaman" ditekan
                                     },
                                     style: ElevatedButton.styleFrom(
                                       primary: Color.fromARGB(
@@ -335,194 +268,165 @@ class _PeminjamanState extends State<Peminjaman> {
                                       onPrimary: Colors
                                           .white, // Warna teks pada button
                                     ),
-                                    child: Text('Bayar Tagihan'),
+                                    child: Text('Ajuan Peminjaman'),
                                   ),
-                                ],
+                                ),
                               ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Rp 1,500,000',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Bayar Sebelum 8 April 2023 11:59',
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 20),
-                        Padding(
-                          padding: EdgeInsets.only(left: 20),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => PeminjamanBaru(),
-                                  ),
-                                ); // Aksi yang ingin dilakukan saat tombol "Ajuan Peminjaman" ditekan
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: Color.fromARGB(
-                                  255,
-                                  26,
-                                  168,
-                                  158,
-                                ), // Warna latar belakang button
-                                onPrimary:
-                                    Colors.white, // Warna teks pada button
-                              ),
-                              child: Text('Ajuan Peminjaman'),
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                        Container(
-                          child: Column(
-                            children: [
-                              SizedBox(height: 10),
-                              ListView.builder(
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                                shrinkWrap: true,
-                                itemCount: modalUsahaList.length,
-                                itemBuilder: (context, index) {
-                                  ModalUsaha modalUsaha = modalUsahaList[index];
-                                  return GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                DetailPeminjaman(
-                                                    modalUsaha: modalUsaha),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(10),
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                  color: Colors.black,
-                                                  width: 1,
+                              SizedBox(height: 15),
+                              Container(
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 10),
+                                    ListView.builder(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 20),
+                                      shrinkWrap: true,
+                                      itemCount: listPeminjaman.length,
+                                      itemBuilder: (context, index) {
+                                        ModalUsaha modalUsaha =
+                                            listPeminjaman[index];
+                                        return GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DetailPeminjaman(
+                                                          modalUsaha:
+                                                              modalUsaha),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                color: Colors.white,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Colors.black
-                                                        .withOpacity(0.5),
-                                                    spreadRadius: 5,
-                                                    blurRadius: 7,
-                                                    offset: Offset(0,
-                                                        3), // mengatur posisi bayangan (x, y)
-                                                  ),
-                                                ],
-                                              ),
-                                              child: Row(
+                                              );
+                                            },
+                                            child: Container(
+                                              child: Column(
                                                 children: [
-                                                  CircleAvatar(
-                                                    radius: 30,
-                                                    backgroundImage:
-                                                        NetworkImage(modalUsaha
-                                                            .imageUrl),
-                                                  ),
-                                                  Flexible(
-                                                    child: Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 10),
-                                                      padding:
-                                                          EdgeInsets.all(5),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                            "Modal Usaha " +
-                                                                modalUsaha.nama,
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 15,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            "Total Pendanaan : " +
-                                                                modalUsaha
-                                                                    .totalPendanaan,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            "Bagi Hasil : " +
-                                                                modalUsaha
-                                                                    .bagiHasil,
-                                                            style: TextStyle(
-                                                              fontSize: 12,
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            modalUsaha.status,
-                                                            style: TextStyle(
-                                                              color: modalUsaha
-                                                                          .status ==
-                                                                      "Selesai"
-                                                                  ? Colors.blue
-                                                                  : Colors
-                                                                      .green,
-                                                              fontSize: 12,
-                                                            ),
-                                                          ),
-                                                        ],
+                                                  Container(
+                                                    padding: EdgeInsets.all(10),
+                                                    decoration: BoxDecoration(
+                                                      border: Border.all(
+                                                        color: Colors.black,
+                                                        width: 1,
                                                       ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      color: Colors.white,
+                                                      boxShadow: [
+                                                        BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(0.5),
+                                                          spreadRadius: 5,
+                                                          blurRadius: 7,
+                                                          offset: Offset(0,
+                                                              3), // mengatur posisi bayangan (x, y)
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    child: Row(
+                                                      children: [
+                                                        CircleAvatar(
+                                                          radius: 30,
+                                                          backgroundImage:
+                                                              NetworkImage(
+                                                                  modalUsaha
+                                                                      .imageUrl),
+                                                        ),
+                                                        Flexible(
+                                                          child: Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 10),
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    5),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                  "Modal Usaha " +
+                                                                      modalUsaha
+                                                                          .nama,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontSize:
+                                                                        15,
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  "Total Pendanaan : Rp." +
+                                                                      numberFormat
+                                                                          .format(
+                                                                              modalUsaha.totalPendanaan)
+                                                                          .toString(),
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  "Bagi Hasil : " +
+                                                                      modalUsaha
+                                                                          .bagiHasil
+                                                                          .toString() +
+                                                                      "%",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontSize:
+                                                                        12,
+                                                                  ),
+                                                                ),
+                                                                Text(
+                                                                  modalUsaha
+                                                                      .status,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: modalUsaha.status ==
+                                                                            "Selesai"
+                                                                        ? Colors
+                                                                            .blue
+                                                                        : Colors
+                                                                            .green,
+                                                                    fontSize:
+                                                                        12,
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ),
+                                                  SizedBox(height: 10),
                                                 ],
                                               ),
-                                            ),
-                                            SizedBox(height: 10),
-                                          ],
-                                        ),
-                                      ));
-                                },
+                                            ));
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
                               ),
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
+          );
+        }
+      },
     );
   }
 }

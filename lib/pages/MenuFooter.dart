@@ -32,7 +32,11 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     pages = [
-      Marketplace(),
+      Marketplace(
+        data: widget.data,
+        data_dompet: widget.data_dompet,
+        type: widget.type,
+      ),
       MyInvest(),
       Home(
         data: widget.data,

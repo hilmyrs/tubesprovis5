@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Peminjaman.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:intl/intl.dart';
 
 class DetailPeminjaman extends StatefulWidget {
   final ModalUsaha modalUsaha;
@@ -13,6 +16,7 @@ class DetailPeminjaman extends StatefulWidget {
 class _DetailPeminjamanState extends State<DetailPeminjaman> {
   @override
   Widget build(BuildContext context) {
+    final numberFormat = NumberFormat('#,##0.00', 'en_US');
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -155,8 +159,11 @@ class _DetailPeminjamanState extends State<DetailPeminjaman> {
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 child: Text(
-                                  "Total Pendanaan : " +
-                                      widget.modalUsaha.totalPendanaan,
+                                  "Total Pendanaan : Rp." +
+                                      numberFormat
+                                          .format(
+                                              widget.modalUsaha.totalPendanaan)
+                                          .toString(),
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -166,7 +173,9 @@ class _DetailPeminjamanState extends State<DetailPeminjaman> {
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 child: Text(
-                                  "Bagi Hasil : " + widget.modalUsaha.bagiHasil,
+                                  "Bagi Hasil : " +
+                                      widget.modalUsaha.bagiHasil.toString() +
+                                      "%",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,
@@ -176,7 +185,9 @@ class _DetailPeminjamanState extends State<DetailPeminjaman> {
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10),
                                 child: Text(
-                                  "Lama Tenor : " + widget.modalUsaha.lamaTenor,
+                                  "Lama Tenor : " +
+                                      widget.modalUsaha.lamaTenor.toString() +
+                                      " Bulan",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 14,

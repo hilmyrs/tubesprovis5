@@ -32,7 +32,11 @@ class _HomePage2State extends State<HomePage2> {
     a = widget.data;
     pages = [
       Explore(),
-      Peminjaman(),
+      Peminjaman(
+        data: widget.data,
+        data_dompet: widget.data_dompet,
+        type: widget.type,
+      ),
       Home(
         data: widget.data,
         data_dompet: widget.data_dompet,
