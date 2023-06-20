@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
       }
     } else {
       final response =
-          await http.get(Uri.parse('http://127.0.0.1:8000/get_tagihan/$id'));
+          await http.get(Uri.parse('http://127.0.0.1:8000/get_angsuran/$id'));
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         return responseData;
@@ -354,6 +354,16 @@ class _HomeState extends State<Home> {
                                                         numberFormat.format(
                                                             asset!["data"]
                                                                 ["asset"]),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                if (widget.type != "investor")
+                                                  Text(
+                                                    "Rp. " +
+                                                        numberFormat.format(
+                                                            asset!["data"]
+                                                                ["jumlah"]),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold),

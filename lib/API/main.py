@@ -473,6 +473,43 @@ def get_asset(id_investor):
     con.close()
     return ({"data": total_aset})
 
+@app.get("/get_angsuran/{id_peminjam}")
+def get_angsuran(id_peminjam):
+   try:
+    DB_NAME = "tubesProvis.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    jumlah = 0
+    jatuh_tempo = ""
+    for row in cur.execute("select * from angsuran JOIN pinjaman on angsuran.id_pinjaman = pinjaman.id_pinjaman WHERE id_peminjam = {} ".format(id_peminjam)):
+        jumlah += row[5]
+        jatuh_tempo = row[3]
+    total_tagihan = {'jumlah': jumlah,
+                  'jatuh_tempo':jatuh_tempo,}
+   except:
+    return ({"status":"terjadi error"})   
+   finally:    
+    con.close()
+    return ({"data": total_tagihan})
+
+@app.get("/get_data_asset/{id_investor}")
+def get_asset(id_investor):
+   try: 
+    DB_NAME = "tubesProvis.db"
+    con = sqlite3.connect(DB_NAME)
+    cur = con.cursor()
+    data_asset = []
+    for row in cur.execute("select * from pendanaan JOIN pinjaman on pendanaan.id_pinjaman = pinjaman.id_pinjaman WHERE id_investor = {} ".format(id_investor)):
+        asset = {
+            "jumlah_pendanaan": row[3],
+            "profit": row[4],
+        }
+   except:
+    return ({"status":"terjadi error"})   
+   finally:    
+    con.close()
+    return ({"data": data_asset})
+
 @app.get("/get_id_history/{id_dompet}")
 def get_id__history(id_dompet):
    try:
@@ -512,7 +549,7 @@ def get_dompet(id_dompet):
 
 
 @app.get("/get_all_pinjaman/")
-def get_pinjaman():
+def get_all_pinjaman():
    try:
     DB_NAME = "tubesProvis.db"
     con = sqlite3.connect(DB_NAME)
@@ -552,12 +589,12 @@ def get_pinjaman(id_peminjam):
     for row in cur.execute("select * from pinjaman JOIN peminjam ON pinjaman.id_peminjam = peminjam.id_peminjam WHERE pinjaman.id_peminjam = {}".format(id_peminjam)):
         dataPinjaman = {
                 'id_pinjaman': row[0],
-                'nama_pinjaman' : row[2],
-                'jumlah': row[3],
-                'lama_tenor' : row[4],
-                'bagi_hasil' : row[5],
-                'status_pinjaman' : row[7],
-                'keterangan' : row[8],
+                'nama_pinjaman' : row[4],
+                'jumlah': row[2],
+                'lama_tenor' : row[3],
+                'bagi_hasil' : row[8],
+                'status_pinjaman' : row[6],
+                'keterangan' : row[7],
                 'nama_peminjam' : row[13],
                 'lokasi' : row[15],
                 

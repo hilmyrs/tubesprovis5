@@ -28,7 +28,7 @@ class _PeminjamanBaruState extends State<PeminjamanBaru> {
   TextEditingController keterangan = TextEditingController();
 
   Future<void> tambahPeminjaman(
-    String id_peminjam,
+    int id_peminjam,
     String nama_pinjaman,
     int jumlah_pinjaman,
     int lama_tenor,
@@ -223,7 +223,7 @@ class _PeminjamanBaruState extends State<PeminjamanBaru> {
             ElevatedButton(
               onPressed: () {
                 tambahPeminjaman(
-                    widget.data,
+                    int.parse(widget.data),
                     namaPinjaman.text,
                     int.parse(jumlahPinjaman.text),
                     int.parse(lamaTenor.text),
