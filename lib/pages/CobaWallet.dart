@@ -96,6 +96,7 @@ class _CobaWalletState extends State<CobaWallet> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     final numberFormat = NumberFormat('#,##0.00', 'en_US');
     return FutureBuilder<Map<String, dynamic>>(
         future: userData,
@@ -166,8 +167,9 @@ class _CobaWalletState extends State<CobaWallet> {
                                       ),
                                     ],
                                   ),
+                                  
                                   width: double.infinity,
-                                  height: 1200,
+                                 height: 470.0 + listHistory.length * 120.0,
                                 ),
                                 Center(
                                   child: Container(
@@ -320,7 +322,7 @@ class _CobaWalletState extends State<CobaWallet> {
                                                                       )));
                                                     },
                                                     child: const Icon(
-                                                      Icons.add_circle_outline,
+                                                      Icons.monetization_on_rounded,
                                                       color: Colors.black,
                                                       size: 30.0,
                                                     ),
@@ -424,7 +426,7 @@ class _CobaWalletState extends State<CobaWallet> {
                                                                                 SizedBox(
                                                                                   width: 20,
                                                                                 ),
-                                                                                Flexible(
+                                                                                Expanded(
                                                                                   child: Container(
                                                                                     margin: EdgeInsets.only(left: 15),
                                                                                     padding: EdgeInsets.all(5),
@@ -461,7 +463,8 @@ class _CobaWalletState extends State<CobaWallet> {
                                                                                   child: Container(
                                                                                     margin: EdgeInsets.only(left: 20),
                                                                                     child: Row(
-                                                                                      mainAxisAlignment: MainAxisAlignment.end,
+                                                                                      
+                                                                                      mainAxisAlignment: MainAxisAlignment.center,
                                                                                       children: [
                                                                                         if (walletView.id_jenis == 2)
                                                                                           Text(
